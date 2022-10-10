@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Fira Code';
+    color: #e5e9f0;
+    scroll-padding-top: 8rem;
+  }
+
+  section {
+    margin: 12rem 0;
+  }
+
+  section:last-of-type {
+    margin-top: 12rem;
+    margin-bottom: 0;
+  }
+
+  #projects-list:last-child {
+    border: none;
+  }
+
+  pre {
+    background-color: #1e1e30 !important;
+    padding: 1rem 2rem;
+  }
+  input,
+  textarea {
+    @apply outline-pink-500;
+  }
+
+  h1 {
+    @apply text-6xl;
+  }
+
+  h2 {
+    @apply text-5xl font-medium;
+  }
+
+  .subheading {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-4xl font-medium;
+  }
+
+  a:hover {
+    color: #e5e9f0;
+  }
+
+  .blog p {
+    margin-block-start: 1rem !important;
+    margin-block-end: 1rem !important;
+  }
+
+  .active {
+    color: #e5e9f0;
+  }
+
+  .text-gradient {
+    background: -webkit-linear-gradient(90deg, #a478e8 0%, #516cf7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .comment {
+    color: #7790a8;
+    font-weight: 400;
+  }
+
+  .icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .showcase {
+    max-width: calc(4 * 4rem + 3 * 4rem);
+  }
+
+  .showcase svg {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .btn-primary {
+    @apply rounded-sm bg-gradient-to-r from-[#A478E8] to-[#516CF7] py-2 px-6 text-white;
+  }
