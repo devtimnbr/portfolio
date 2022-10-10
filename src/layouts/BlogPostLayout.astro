@@ -1,0 +1,41 @@
+---
+import type { MarkdownLayoutProps } from 'astro';
+import BaseLayout from './BaseLayout.astro';
+import { Sprite } from 'astro-icon';
+import ContactForm from '../components/ContactForm.astro';
+
+type Props = MarkdownLayoutProps<{
+  // Define frontmatter props here
+  title: string;
+  author: string;
+  date: string;
+  img: string;
+  description: string;
+}>;
+
+export type BlogProps = Props;
+
+const { frontmatter, url } = Astro.props;
+---
+
+<head>
+  <!-- <meta rel="canonical" href={new URL(url, Astro.site).pathname} /> -->
+  <title>{frontmatter.title}</title>
+</head>
+<BaseLayout>
+  <div class="px-32">
+    <h1>{frontmatter.title}</h1>
+    <p class="mt-4">{frontmatter.description}</p>
+
+    <p class="mt-6 text-sm">Written on: {frontmatter.date}</p>
+    <p class="text-sm">Written by: {frontmatter.author}</p>
+    <img
+      src={frontmatter.img}
+      class="rounded-md h-1/6 w-full object-cover mt-12 mb-20"
+    />
+    <div class="blog">
+      <slot />
+    </div>
+  </div>
+  <!--   <ContactForm /> -->
+</BaseLayout>

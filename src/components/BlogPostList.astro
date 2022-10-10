@@ -1,0 +1,47 @@
+---
+import BlogCard from './BlogCard.astro';
+
+type Props = {
+  limit?: number;
+};
+
+const { limit } = Astro.props;
+
+let posts = await Astro.glob('../pages/blog/*.md');
+posts = posts.filter((post) => post.frontmatter.draft);
+
+if (limit) posts = posts.slice(0, limit);
+---
+
+<div
+  class={`flex w-full flex-wrap gap-4 ${
+    posts.length < 2 ? 'justify-center' : 'justify-between'
+  }`}
+>
+  {
+    posts.length < 1 ? (
+      <h2 class="mt-6 text-center text-8xl text-[#6d6d8e]">Coming Soon</h2>
+    ) : (
+      <div
+        class={`mt-12 flex w-full flex-wrap gap-4 gap-y-16 ${
+          posts.length < 2 ? 'justify-center' : 'justify-between'
+        }`}
+      >
+        {posts.map((post) => {
+          const { title, img } = post.frontmatter;
+          const url = post.url;
+
+          return (
+            <BlogCard
+              title={title}
+              img={img}
+              comment="Nodejs, TypeScript, Sharp"
+              description="Siom stands for sharp image optimizer microservice and explains itself. It is used to resize images on the fly, convert images to webp and is very powerful behind a cache proxy like Choxy."
+              link={url}
+            />
+          );
+        })}
+      </div>
+    )
+  }
+</div>

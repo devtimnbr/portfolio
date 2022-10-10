@@ -1,0 +1,17 @@
+---
+import BlogPostList from '../components/BlogPostList.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = await Astro.glob('./blog/*.md');
+---
+
+<BaseLayout>
+  <h1 class="text-6xl text-center">Blog</h1>
+  <BlogPostList />
+  <!--   {
+    posts.map((el) => {
+      console.log({ el });
+      console.log(el.Content);
+    })
+  } -->
+</BaseLayout>

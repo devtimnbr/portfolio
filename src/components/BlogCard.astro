@@ -1,0 +1,33 @@
+---
+import { Sprite } from 'astro-icon';
+
+interface Props {
+  title: string;
+  img: string;
+  comment: string;
+  description: string;
+  link: string;
+}
+
+const { title, img, comment, description, link } = Astro.props;
+---
+
+<div class="max-w-sm bg-[#232339]" style="flex: 0 0 33.333%">
+  <img class="w-full h-48 rounded-t-lg object-cover" src={img} />
+  <div class="mt-6">
+    <p class="text-xl font-bold">{title}</p>
+    <p class="comment mt-1">// {comment}</p>
+    <p class="mt-2">{description}</p>
+    <!-- <a href="/blog/" class="btn-primary mt-2 inline-block">read</a> -->
+    <div class="mt-2 text-sm text-[#95AAFB]">
+      <a href={link} class="flex items-center cursor-pointer"
+        ><span
+          class="inline-flex w-6 h-6 justify-center items-center bg-[#2A337E] rounded-full"
+        >
+          <Sprite name="akar-icons:book" class="w-4 h-4" />
+        </span>
+        <span class="ml-3">Read more</span>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,97 @@
+---
+---
+
+<head>
+  <script>
+    const hrefsIndex = {
+      '#hello': '#hello',
+      '#about': '#about',
+      '#projects': '#projects',
+      '#blog': '#blog',
+      '#contact': '#contact',
+    };
+
+    const hrefsNotIndex = {
+      '#hello': '/',
+      '#about': '/#about',
+      '#projects': '/#projects',
+      '#blog': '/blog/',
+      '#contact': '/#contact',
+    };
+
+    if (window.location.pathname.includes('/blog')) {
+      document.querySelector('[href="#blog"]').classList.add('active');
+    }
+
+    if (window.location.pathname === '/') {
+      /*       Object.keys(hrefsIndex).forEach((key) => {
+        (document.querySelector(`[href="${key}"]`) as any).href =
+          hrefsIndex[key];
+      }); */
+    } else {
+      Object.keys(hrefsNotIndex).forEach((key) => {
+        (document.querySelector(`[href="${key}"]`) as any).href =
+          hrefsNotIndex[key];
+      });
+    }
+
+    // init observer
+    const callback: IntersectionObserverCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        console.log(entry.target.id);
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+          // remove old active class
+          const lastActiveElement = document.querySelector('.active');
+          if (lastActiveElement) lastActiveElement.classList.remove('active');
+          // find matching link & add appropriate class
+          const id = entry.target.id;
+          document.querySelector(`[href="#${id}"]`).classList.add('active');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      threshold: 0.1,
+      rootMargin: '54px',
+    });
+
+    // target the elements to be observed
+    const sections = [
+      document.querySelector('header'),
+      ...document.querySelectorAll('section'),
+    ];
+
+    console.log(sections);
+    // observe all target elements
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  </script>
+</head>
+
+<nav class="fixed w-full border-b border-[#1E2D3D] text-[#7790a8] bg-[#232339]">
+  <ul class="container flex justify-between mx-auto">
+    <li class="border-x border-[#1E2D3D] px-8 py-4">
+      <a href="/">tim neubauer</a>
+    </li>
+    <li>
+      <ul class="flex px-8 py-4">
+        <li class="px-6 relative">
+          <a href="#hello">_hello</a>
+          <!-- <div class="absolute h-1 w-full bottom-0 bg-blue-400"></div> -->
+        </li>
+        <li class="px-6">
+          <a href="#about">_about-me</a>
+        </li>
+        <li class="px-6">
+          <a href="#projects">_projects</a>
+        </li>
+        <li class="px-6"><a href="#blog">_blog</a></li>
+      </ul>
+    </li>
+    <li class="px-8 py-4">
+      <!-- href="mailto:hello@timneubauer.dev" -->
+      <a href="#contact">_contact-me</a>
+    </li>
+  </ul>
+</nav>
