@@ -8,7 +8,7 @@ type Props = {
 const { limit } = Astro.props;
 
 let posts = await Astro.glob('../pages/blog/*.md');
-posts = posts.filter((post) => post.frontmatter.draft);
+posts = posts.filter((post) => !post.frontmatter.draft);
 
 if (limit) posts = posts.slice(0, limit);
 ---

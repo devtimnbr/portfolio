@@ -5,7 +5,7 @@ description: "Today, we’re going to look at some modern JavaScript methods for
 author: "Tim Neubauer"
 date: "09 Aug 2022"
 img: "https://i.ytimg.com/vi/48NWaLkDcME/maxresdefault.jpg"
-draft: true
+draft: false
 ---
 
 ## The FormData Object
