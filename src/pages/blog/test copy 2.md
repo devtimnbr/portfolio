@@ -4,7 +4,7 @@ title: "Astro v1 Launch!"
 author: "Matthew Phillips"
 date: "09 Aug 2022"
 img: "https://i.ytimg.com/vi/48NWaLkDcME/maxresdefault.jpg"
-draft: true
+draft: false
 ---
 
 # Hello

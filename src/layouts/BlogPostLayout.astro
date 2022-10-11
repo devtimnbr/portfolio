@@ -1,5 +1,6 @@
 ---
 import type { MarkdownLayoutProps } from 'astro';
+import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from './BaseLayout.astro';
 
 type Props = MarkdownLayoutProps<{
@@ -21,10 +22,9 @@ const { frontmatter, url } = Astro.props;
   <title>{frontmatter.title}</title>
 </head>
 <BaseLayout>
-  <div class="px-32">
+  <div class="px-64">
     <h1>{frontmatter.title}</h1>
     <p class="mt-4">{frontmatter.description}</p>
-
     <p class="mt-6 text-sm">Written on: {frontmatter.date}</p>
     <p class="text-sm">Written by: {frontmatter.author}</p>
     <img
@@ -33,6 +33,8 @@ const { frontmatter, url } = Astro.props;
     />
     <div class="blog">
       <slot />
+
+      <ContactForm />
     </div>
   </div>
   <!--   <ContactForm /> -->

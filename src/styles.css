@@ -12,6 +12,7 @@
     font-family: 'Fira Code';
     color: #e5e9f0;
     scroll-padding-top: 8rem;
+    scroll-behavior: smooth;
   }
 
   section {
@@ -30,6 +31,7 @@
   pre {
     background-color: #1e1e30 !important;
     padding: 1rem 2rem;
+    margin-top: 1rem;
   }
   input,
   textarea {
@@ -93,3 +95,8 @@
   .btn-primary {
     @apply rounded-sm bg-gradient-to-r from-[#A478E8] to-[#516CF7] py-2 px-6 text-white;
   }
+
+  
+/* #project :last-of-type {
+    background: red;
+} */
