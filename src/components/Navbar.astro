@@ -1,16 +1,27 @@
 ---
+import { Sprite } from 'astro-icon';
 ---
 
 <head>
+  <!-- Hamburger Menu Script -->
   <script>
-    const hrefsIndex = {
-      '#hello': '#hello',
-      '#about': '#about',
-      '#projects': '#projects',
-      '#blog': '#blog',
-      '#contact': '#contact',
-    };
+    document.querySelector('#hamburger').addEventListener('click', () => {
+      console.log('clicked');
+      let nav = document.querySelector('#navlinks');
+      let hamburger = document.querySelector('#hamburger');
+      let activeStyles = 'bg-indigo-400';
 
+      if (nav.classList.contains('hidden')) {
+        nav.classList.remove('hidden');
+        hamburger.classList.add(activeStyles);
+      } else {
+        nav.classList.add('hidden');
+        hamburger.classList.remove(activeStyles);
+      }
+    });
+  </script>
+  <!-- Intersection Observer Script -->
+  <script>
     const hrefsNotIndex = {
       '#hello': '/',
       '#about': '/#about',
@@ -23,12 +34,7 @@
       document.querySelector('[href="#blog"]').classList.add('active');
     }
 
-    if (window.location.pathname === '/') {
-      /*       Object.keys(hrefsIndex).forEach((key) => {
-        (document.querySelector(`[href="${key}"]`) as any).href =
-          hrefsIndex[key];
-      }); */
-    } else {
+    if (window.location.pathname != '/') {
       Object.keys(hrefsNotIndex).forEach((key) => {
         (document.querySelector(`[href="${key}"]`) as any).href =
           hrefsNotIndex[key];
@@ -61,7 +67,6 @@
       ...document.querySelectorAll('section'),
     ];
 
-    console.log(sections);
     // observe all target elements
     sections.forEach((section) => {
       observer.observe(section);
@@ -70,27 +75,71 @@
 </head>
 
 <nav class="fixed w-full border-b border-[#1E2D3D] text-[#7790a8] bg-[#232339]">
-  <ul class="container flex justify-between mx-auto">
+  <ul
+    class="container flex flex-col lg:flex-row justify-between mx-auto relative"
+  >
     <li class="border-x border-[#1E2D3D] px-8 py-4">
       <a href="/">tim neubauer</a>
     </li>
-    <li>
-      <ul class="flex px-8 py-4">
-        <li class="px-6 relative">
-          <a href="#hello">_hello</a>
-          <!-- <div class="absolute h-1 w-full bottom-0 bg-blue-400"></div> -->
+
+    <li
+      id="navlinks"
+      class="hidden border-x border-[#1E2D3D] lg:block lg:border-x-0"
+    >
+      <ul
+        class="flex flex-col lg:flex-row px-8 pb-4 lg:py-4 space-y-1 lg:space-y-0 lg:space-x-8"
+      >
+        <li class="">
+          <a href="#hello" class="flex items-center"
+            ><Sprite
+              name="bi:chevron-compact-right"
+              class="h-4 w-4 lg:hidden"
+            /> _hello</a
+          >
         </li>
-        <li class="px-6">
-          <a href="#about">_about-me</a>
+        <li class="">
+          <a href="#about" class="flex items-center"
+            ><Sprite
+              name="bi:chevron-compact-right"
+              class="h-4 w-4 lg:hidden"
+            /> _about-me</a
+          >
         </li>
-        <li class="px-6">
-          <a href="#projects">_projects</a>
+        <li class="">
+          <a href="#projects" class="flex items-center"
+            ><Sprite
+              name="bi:chevron-compact-right"
+              class="h-4 w-4 lg:hidden"
+            /> _projects</a
+          >
         </li>
-        <li class="px-6"><a href="#blog">_blog</a></li>
+        <li class="">
+          <a href="#blog" class="flex items-center"
+            ><Sprite
+              name="bi:chevron-compact-right"
+              class="h-4 w-4 lg:hidden"
+            /> _blog</a
+          >
+        </li>
+        <li class="lg:hidden">
+          <!-- href="mailto:hello@timneubauer.dev" -->
+          <a href="#contact" class="flex items-center"
+            ><Sprite name="bi:chevron-compact-right" class="h-4 w-4" /> _contact-me</a
+          >
+        </li>
       </ul>
     </li>
-    <li class="px-8 py-4">
-      <!-- href="mailto:hello@timneubauer.dev" -->
+    <li
+      id="hamburger"
+      class="p-2 w-fit cursor-pointer absolute right-6 top-2 lg:hidden"
+    >
+      <div class="space-y-2">
+        <span class="block w-8 h-0.5 bg-gray-300"></span>
+        <span class="block w-8 h-0.5 bg-gray-300"></span>
+        <span class="block w-5 h-0.5 bg-gray-300"></span>
+      </div>
+    </li>
+    <li class="px-8 py-4 hidden lg:block">
       <a href="#contact">_contact-me</a>
     </li>
   </ul>

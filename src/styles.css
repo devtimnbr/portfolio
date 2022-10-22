@@ -15,8 +15,14 @@
     scroll-behavior: smooth;
   }
 
+
   section {
-    margin: 12rem 0;
+    margin: 8rem 0;
+  }
+  @media screen and (min-width: 668px) {
+    section {
+      margin: 12rem 0;
+    }
   }
 
   section:last-of-type {
@@ -58,6 +64,16 @@
     color: #e5e9f0;
   }
 
+  #projects-list > div:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  #projects-list > div:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
   .blog p {
     margin-block-start: 1rem !important;
     margin-block-end: 1rem !important;
@@ -96,7 +112,6 @@
     @apply rounded-sm bg-gradient-to-r from-[#A478E8] to-[#516CF7] py-2 px-6 text-white;
   }
 
-  
 /* #project :last-of-type {
     background: red;
 } */

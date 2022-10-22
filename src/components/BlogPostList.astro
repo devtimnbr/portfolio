@@ -23,7 +23,8 @@ if (limit) posts = posts.slice(0, limit);
       <h2 class="mt-6 text-center text-8xl text-[#6d6d8e]">Coming Soon</h2>
     ) : (
       <div
-        class={`mt-12 flex w-full flex-wrap gap-4 gap-y-16 ${
+      /* flex-wrap */
+        class={`mt-12 flex w-full flex-col md:flex-row gap-y-16 ${
           posts.length < 2 ? 'justify-center' : 'justify-between'
         }`}
       >

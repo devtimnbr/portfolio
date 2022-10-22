@@ -29,7 +29,7 @@ import Navbar from '../components/Navbar.astro';
   <body class="bg-[#232339]">
     <Sprite.Provider>
       <Navbar />
-      <main class="container mx-auto py-40"><slot /></main>
+      <main class="container mx-auto px-4 md:px-0 py-40"><slot /></main>
       <footer
         class="fixed bottom-0 flex border-t border-[#1E2D3D] text-[#7790a8] bg-[#232339] w-full"
       >
@@ -46,7 +46,7 @@ import Navbar from '../components/Navbar.astro';
               </a>
             </p>
           </div>
-          <p class="">
+          <p class="hidden">
             <a
               class="flex py-4 items-center"
               href="mailto:hello@timneubauer.dev"

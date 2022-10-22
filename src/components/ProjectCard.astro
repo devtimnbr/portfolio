@@ -13,20 +13,24 @@ interface Props {
 
 const { right, link, img, title, comment, description } = Astro.props;
 
-const flexDirection = right ? 'flex-row-reverse' : '';
-const margin = right ? 'mr-16' : 'ml-16';
+const flexDirection = right ? 'md:flex-row-reverse' : 'md:flex-row';
+const padding = right ? 'md:pr-16' : 'md:pl-16';
 ---
 
 <div
   id="project"
-  class={`border-y border-[#1E2D3D] w-full py-16 flex ${flexDirection} items-center `}
+  class={`border-y border-[#1E2D3D] w-full py-16 flex flex-col ${flexDirection} items-center`}
 >
-  <div class="h-64 rounded-md" style="flex: 1;">
-    <img src={img} />
+  <!-- style="flex: 1;" -->
+  <div class="w-full flex-1">
+    <img
+      src={img}
+      class="w-full h-48 object-left object-contain md:object-cover md:object-center"
+    />
   </div>
 
-  <div class={margin} style="flex: 2;">
-    <p class="text-xl font-bold">{title}</p>
+  <div class={`m-0 ${padding} flex-2`}>
+    <p class="text-xl font-bold mt-6">{title}</p>
     <p class="comment mt-1">// {comment}</p>
     <p class="mt-2">
       {description}
