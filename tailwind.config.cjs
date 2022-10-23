@@ -4,6 +4,9 @@ module.exports = {
 	safelist: ['md:flex-row-reverse'],
 	theme: {
 		extend: {
+			fontFamily: {
+				"fira": ["Fira Code"]
+			},
 			flex: {
 				"2": "2",
 				"1/3": "0 0 33.333%"
