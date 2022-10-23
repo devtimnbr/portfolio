@@ -25,9 +25,11 @@ import Navbar from '../components/Navbar.astro';
       <footer
         class="fixed bottom-0 flex border-t border-[#1E2D3D] text-[#7790a8] bg-[#232339] w-full"
       >
-        <div class="container mx-auto flex justify-between items-center">
-          <div class="border-x border-[#1E2D3D] flex">
-            <p class="px-8 py-4 flex items-center">
+        <div
+          class="container mx-auto px-8 border-x sm:border-x-0 sm:px-0 border-[#1E2D3D] flex flex-col sm:flex-row justify-between items-start sm:items-center"
+        >
+          <div class="sm:border-x sm:border-[#1E2D3D] flex">
+            <p class="sm:px-8 pt-2 sm:py-4 flex items-center">
               find me at:
               <a href="" class="icon ml-2"
                 ><Sprite name="akar-icons:twitter-fill" />
@@ -40,7 +42,7 @@ import Navbar from '../components/Navbar.astro';
           </div>
           <p class="">
             <a
-              class="flex py-4 items-center"
+              class="flex sm:px-8 py-2 sm:py-4 items-center sm:border-r border-[#1E2D3D]"
               href="mailto:hello@timneubauer.dev"
             >
               hello@timneubauer.dev <Sprite

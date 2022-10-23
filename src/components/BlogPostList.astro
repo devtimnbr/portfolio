@@ -30,7 +30,7 @@ if (limit) posts = posts.slice(0, limit);
         }`}
       >
         {posts.map((post) => {
-          const { title, img } = post.frontmatter;
+          const { title, img, date } = post.frontmatter;
           const url = post.url;
 
           return (
@@ -40,6 +40,7 @@ if (limit) posts = posts.slice(0, limit);
               comment="Nodejs, TypeScript, Sharp"
               description="Siom stands for sharp image optimizer microservice and explains itself. It is used to resize images on the fly, convert images to webp and is very powerful behind a cache proxy like Choxy."
               link={url}
+              date={date}
             />
           );
         })}
