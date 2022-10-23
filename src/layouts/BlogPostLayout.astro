@@ -22,8 +22,8 @@ const { frontmatter, url } = Astro.props;
   <title>{frontmatter.title}</title>
 </head>
 <BaseLayout>
-  <div class="px-64">
-    <h1>{frontmatter.title}</h1>
+  <div class="sm:px-8 md:px-16 lg:px-32 xl:px-48">
+    <h1 class="text-6xl">{frontmatter.title}</h1>
     <p class="mt-4">{frontmatter.description}</p>
     <p class="mt-6 text-sm">Written on: {frontmatter.date}</p>
     <p class="text-sm">Written by: {frontmatter.author}</p>

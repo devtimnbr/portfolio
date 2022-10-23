@@ -44,21 +44,13 @@
     @apply outline-pink-500;
   }
 
-  h1 {
-    @apply text-6xl;
-  }
 
-  h2 {
-    @apply text-5xl font-medium;
-  }
+
 
   .subheading {
     @apply text-3xl;
   }
 
-  h3 {
-    @apply text-4xl font-medium;
-  }
 
   a:hover {
     color: #e5e9f0;
