@@ -5,12 +5,13 @@
   <script>
     let form = document.getElementById('contact-form') as HTMLFormElement;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
+      console.log('submitting ... ');
       const formData = new FormData(e.target as HTMLFormElement);
-
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const message = formData.get('message');
+      await fetch('https://mailer.timneubauer.dev', {
+        method: 'POST',
+        body: formData,
+      });
 
       // form.reset();
     });
