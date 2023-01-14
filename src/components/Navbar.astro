@@ -86,12 +86,14 @@ import { Sprite } from 'astro-icon';
 
     // observe all target elements
     sections.forEach((section) => {
-      observer.observe(section);
+      if (section) observer.observe(section);
     });
   </script>
 </head>
 
-<nav class="fixed w-full border-b border-[#1E2D3D] text-[#7790a8] bg-[#232339]">
+<nav
+  class="fixed z-50 w-full border-b border-[#1E2D3D] text-[#7790a8] bg-[#232339]"
+>
   <ul
     class="container flex flex-col lg:flex-row justify-between mx-auto relative"
   >

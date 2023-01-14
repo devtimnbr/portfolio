@@ -1,7 +1,7 @@
 ---
-import '../styles.css';
-import { Sprite } from 'astro-icon';
-import Navbar from '../components/Navbar.astro';
+import "../styles.css";
+import { Sprite } from "astro-icon";
+import Navbar from "../components/Navbar.astro";
 ---
 
 <html lang="en">
@@ -15,8 +15,36 @@ import Navbar from '../components/Navbar.astro';
       href="https://cache.timneubauer.dev/fonts/fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-
-    <title>Astro</title>
+    <!-- favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicons/site.webmanifest" />
+    <link rel="shortcut icon" href="/favicons/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- seo -->
+    <title>Tim Neubauer | Full Stack Engineer</title>
+    <meta
+      name="description"
+      content="Certified Full Stack Engineer based in Germany with a passion for the
+    cutting edge."
+    />
   </head>
   <body class="bg-[#232339] font-fira">
     <Sprite.Provider>

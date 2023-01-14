@@ -1,7 +1,7 @@
 ---
-import type { MarkdownLayoutProps } from 'astro';
-import ContactForm from '../components/ContactForm.astro';
-import BaseLayout from './BaseLayout.astro';
+import type { MarkdownLayoutProps } from "astro";
+import ContactForm from "../components/ContactForm.astro";
+import BaseLayout from "./BaseLayout.astro";
 
 type Props = MarkdownLayoutProps<{
   // Define frontmatter props here
@@ -14,28 +14,68 @@ type Props = MarkdownLayoutProps<{
 
 export type BlogProps = Props;
 
-const { frontmatter, url } = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <head>
-  <!-- <meta rel="canonical" href={new URL(url, Astro.site).pathname} /> -->
   <title>{frontmatter.title}</title>
+  <meta name={frontmatter.description} />
 </head>
+
+<script>
+  let copyButtonLabel = "Copy Code";
+  let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+  for (let codeBlock of codeBlocks) {
+    let wrapper = document.createElement("div");
+    wrapper.style.position = "relative";
+
+    let copyButton = document.createElement("button");
+    copyButton.className = "copy-code";
+    copyButton.innerHTML = copyButtonLabel;
+
+    codeBlock.setAttribute("tabindex", "0");
+    codeBlock.appendChild(copyButton);
+    // wrap codebock with relative parent element
+    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+    wrapper.appendChild(codeBlock);
+
+    copyButton.addEventListener("click", async () => {
+      await copyCode(codeBlock, copyButton);
+    });
+  }
+
+  async function copyCode(block, button) {
+    let code = block.querySelector("code");
+    let text = code.innerText;
+
+    await navigator.clipboard.writeText(text);
+
+    // visual feedback that task is completed
+    button.innerText = "Code Copied";
+
+    setTimeout(() => {
+      button.innerText = copyButtonLabel;
+    }, 700);
+  }
+</script>
+
 <BaseLayout>
-  <div class="max-w-xl lg:max-w-3xl mx-auto">
+  <div class="max-w-xl lg:max-w-3xl mx-auto blog">
     <h1>{frontmatter.title}</h1>
+    <p class="mt-4 text-xs">Written on: {frontmatter.date}</p>
     <p class="mt-4">{frontmatter.description}</p>
-    <p class="mt-6 text-sm">Written on: {frontmatter.date}</p>
-    <p class="text-sm">Written by: {frontmatter.author}</p>
+
     <img
       src={frontmatter.img}
-      class="rounded-md h-1/6 w-full object-cover mt-12 mb-20"
+      class="rounded-md h-1/6 mt-12 w-full object-cover mb-12"
     />
-    <div class="blog">
-      <slot />
 
-      <!-- <ContactForm /> -->
-    </div>
+    <!-- <div class="blog"> -->
+    <slot />
+    <!-- </div> -->
   </div>
-  <!--   <ContactForm /> -->
+  <div class="mt-20">
+    <ContactForm />
+  </div>
 </BaseLayout>
