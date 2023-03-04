@@ -26,13 +26,17 @@ First, we'll create a new layout called "BlogPostLayout.astro". This layout will
 
 Since Astro provides Markdown and MDX pages with a special frontmatter layout property, we can specify or newly created Astro layout inside our markdown pages.
 
-```markdown
+````markdown
 ---
 layout: ./layouts/BlogPostLayout.astro
 ---
 
 # Post Title
+
+```javascript
+let hello = "world";
 ```
+````
 
 ## Adding the Copy Code Button
 

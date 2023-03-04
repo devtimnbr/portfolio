@@ -1,22 +1,22 @@
 ---
-import { Sprite } from 'astro-icon';
+import { Sprite } from "astro-icon";
 ---
 
 <head>
   <!-- Hamburger Menu Script -->
   <script>
-    document.querySelector('#hamburger').addEventListener('click', () => {
-      const nav = document.querySelector('#navlinks');
-      const hamburger = document.querySelector('#hamburger');
-      const bars = hamburger.getElementsByTagName('span');
-      const barStyles = { active: 'bg-gray-300', default: 'bg-[#7790a8]' };
+    document.querySelector("#hamburger").addEventListener("click", () => {
+      const nav = document.querySelector("#navlinks");
+      const hamburger = document.querySelector("#hamburger");
+      const bars = hamburger.getElementsByTagName("span");
+      const barStyles = { active: "bg-gray-300", default: "bg-[#7790a8]" };
       const hamburgerContainerStyles = {
-        active: 'border-gray-300',
-        default: 'border-[#7790a8]',
+        active: "border-gray-300",
+        default: "border-[#7790a8]",
       };
 
-      if (nav.classList.contains('hidden')) {
-        nav.classList.remove('hidden');
+      if (nav.classList.contains("hidden")) {
+        nav.classList.remove("hidden");
         hamburger.classList.add(hamburgerContainerStyles.active);
         hamburger.classList.remove(hamburgerContainerStyles.default);
         for (const bar of bars) {
@@ -24,7 +24,7 @@ import { Sprite } from 'astro-icon';
           bar.classList.remove(barStyles.default);
         }
       } else {
-        nav.classList.add('hidden');
+        nav.classList.add("hidden");
         hamburger.classList.remove(hamburgerContainerStyles.active);
         hamburger.classList.add(hamburgerContainerStyles.default);
         for (const bar of bars) {
@@ -37,18 +37,18 @@ import { Sprite } from 'astro-icon';
   <!-- Intersection Observer Script -->
   <script>
     const hrefsNotIndex = {
-      '#hello': '/',
-      '#about': '/#about',
-      '#projects': '/#projects',
-      '#blog': '/blog/',
-      '#contact': '/#contact',
+      "#hello": "/",
+      "#about": "/#about",
+      "#projects": "/#projects",
+      "#blog": "/blog/",
+      "#contact": "/#contact",
     };
 
-    if (window.location.pathname.includes('/blog')) {
-      document.querySelector('[href="#blog"]').classList.add('active');
+    if (window.location.pathname.includes("/blog")) {
+      document.querySelector('[href="#blog"]').classList.add("active");
     }
 
-    if (window.location.pathname != '/') {
+    if (window.location.pathname != "/") {
       Object.keys(hrefsNotIndex).forEach((key) => {
         (document.querySelector(`[href="${key}"]`) as any).href =
           hrefsNotIndex[key];
@@ -61,27 +61,27 @@ import { Sprite } from 'astro-icon';
         console.log(entry.target.id);
         if (entry.isIntersecting && entry.intersectionRatio >= 0.51) {
           // remove old active class
-          const lastActiveElement = document.querySelectorAll('.active');
+          const lastActiveElement = document.querySelectorAll(".active");
           if (lastActiveElement)
-            lastActiveElement.forEach((el) => el.classList.remove('active'));
+            lastActiveElement.forEach((el) => el.classList.remove("active"));
           // find matching link & add appropriate class
           const id = entry.target.id;
           document
             .querySelectorAll(`[href="#${id}"]`)
-            .forEach((el) => el.classList.add('active'));
+            .forEach((el) => el.classList.add("active"));
         }
       });
     };
 
     const observer = new IntersectionObserver(callback, {
       threshold: 0.51,
-      rootMargin: '54px',
+      rootMargin: "54px",
     });
 
     // target the elements to be observed
     const sections = [
-      document.querySelector('header'),
-      ...document.querySelectorAll('section'),
+      document.querySelector("header"),
+      ...document.querySelectorAll("section"),
     ];
 
     // observe all target elements
@@ -141,7 +141,6 @@ import { Sprite } from 'astro-icon';
           >
         </li>
         <li class="lg:hidden">
-          <!-- href="mailto:hello@timneubauer.dev" -->
           <a href="#contact" class="flex items-center"
             ><Sprite name="bi:chevron-compact-right" class="h-4 w-4" /> _contact-me</a
           >
@@ -150,12 +149,12 @@ import { Sprite } from 'astro-icon';
     </li>
     <li
       id="hamburger"
-      class="p-2 w-fit cursor-pointer absolute right-6 top-2 lg:hidden border border-[#7790a8] rounded-sm"
+      class="p-2 w-fit cursor-pointer absolute right-6 top-2 lg:hidden rounded-sm"
     >
-      <div class="space-y-2">
-        <span class="block w-8 h-0.5 bg-[#7790a8]"></span>
-        <span class="block w-8 h-0.5 bg-[#7790a8]"></span>
+      <div class="space-y-[0.3rem]">
         <span class="block w-5 h-0.5 bg-[#7790a8]"></span>
+        <span class="block w-5 h-0.5 bg-[#7790a8]"></span>
+        <span class="block w-3 h-0.5 bg-[#7790a8] ml-auto"></span>
       </div>
     </li>
     <li class="px-8 py-4 hidden lg:block border-r border-[#1E2D3D]">

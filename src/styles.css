@@ -53,15 +53,29 @@ textarea {
 }
 
 h1 {
-  @apply text-6xl;
+  @apply text-4xl;
 }
 
 h2 {
-  @apply text-5xl font-medium;
+  @apply text-3xl font-medium;
 }
 
 h3 {
-  @apply text-4xl font-medium;
+  @apply text-2xl font-medium;
+}
+
+@media (min-width: 640px) {
+  h1 {
+    @apply text-6xl;
+  }
+  
+  h2 {
+    @apply text-5xl font-medium;
+  }
+  
+  h3 {
+    @apply text-4xl font-medium;
+  }
 }
 
 .subheading {

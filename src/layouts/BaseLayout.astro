@@ -2,6 +2,7 @@
 import "../styles.css";
 import { Sprite } from "astro-icon";
 import Navbar from "../components/Navbar.astro";
+import { socials } from "../constants/socials";
 ---
 
 <html lang="en">
@@ -59,11 +60,11 @@ import Navbar from "../components/Navbar.astro";
           <div class="sm:border-x sm:border-[#1E2D3D] flex">
             <p class="sm:px-8 pt-2 sm:py-4 flex items-center">
               find me at:
-              <a href="" class="icon ml-2"
+              <a href={socials.twitter} class="icon ml-2"
                 ><Sprite name="akar-icons:twitter-fill" />
               </a>
 
-              <a href="" class="icon ml-2"
+              <a href={socials.github} class="icon ml-2"
                 ><Sprite name="akar-icons:github-fill" />
               </a>
             </p>

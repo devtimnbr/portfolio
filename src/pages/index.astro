@@ -5,10 +5,12 @@ import PorjectCard from "../components/ProjectCard.astro";
 import BlogPostList from "../components/BlogPostList.astro";
 import ContactForm from "../components/ContactForm.astro";
 import CTA from "../components/CTA.astro";
+import { socials } from "../constants/socials";
 
-let ageDif = Date.now() - Date.parse("04.02.1999");
+let ageDif = Date.now() - Date.parse("02.04.1999");
 let ageDifDate = new Date(ageDif);
 let age = ageDifDate.getFullYear() - 1970;
+console.log({ age, ageDif, ageDifDate });
 ---
 
 <BaseLayout>
@@ -37,15 +39,15 @@ let age = ageDifDate.getFullYear() - 1970;
           <p>
             <span class="text-[#4D5BCE]">const</span>
             <span class="text-[#43D9AD]">githubLink</span> =
-            <a class="text-[#E99287]" href="https://github.com/devtimnbr"
-              >“https://github.com/devtimnbr”</a
+            <a class="text-[#E99287]" href={socials.twitter}
+              >“{socials.github}”</a
             >
           </p>
           <p>
             <span class="text-[#4D5BCE]">const</span>
             <span class="text-[#43D9AD]">twitterLink</span> =
-            <a href="https://twitter.com/_tndev" class="text-[#E99287]"
-              >“https://twitter.com/_tndev”</a
+            <a href={socials.twitter} class="text-[#E99287]"
+              >“{socials.twitter}”</a
             >
           </p>
 
@@ -145,16 +147,12 @@ let age = ageDifDate.getFullYear() - 1970;
     </section>
     <section id="blog" class="flex flex-col items-center justify-center">
       <h3 class="text-4xl font-medium">_blog</h3>
-      <!--      <div
-        class={`flex w-full mt-12 gap-4 ${
-          posts.length < 2 ? 'justify-center' : 'justify-between'
-        }`} >-->
 
       <BlogPostList limit={3} />
 
       <a href="/blog/" class="btn-primary mt-12 block">See more blog posts</a>
     </section>
-    <section id="contact">
+    <section>
       <ContactForm />
     </section>
   </>
