@@ -41,9 +41,10 @@ import { Sprite } from "astro-icon";
       "#about": "/#about",
       "#projects": "/#projects",
       "#blog": "/blog/",
-      "#contact": "/#contact",
+      "#contact": "#contact",
     };
 
+    // if path is blog make it actuve
     if (window.location.pathname.includes("/blog")) {
       document.querySelector('[href="#blog"]').classList.add("active");
     }
