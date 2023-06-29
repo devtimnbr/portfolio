@@ -1,24 +1,21 @@
 ---
-import { Sprite } from "astro-icon";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import PorjectCard from "../components/ProjectCard.astro";
-import BlogPostList from "../components/BlogPostList.astro";
-import ContactForm from "../components/ContactForm.astro";
-import CTA from "../components/CTA.astro";
-import { socials } from "../constants/socials";
+import { Sprite } from 'astro-icon'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PorjectCard from '../components/ProjectCard.astro'
+import BlogPostList from '../components/BlogPostList.astro'
+import ContactForm from '../components/ContactForm.astro'
+import CTA from '../components/CTA.astro'
+import { socials } from '../constants/socials'
 
-let ageDif = Date.now() - Date.parse("02.04.1999");
-let ageDifDate = new Date(ageDif);
-let age = ageDifDate.getFullYear() - 1970;
-console.log({ age, ageDif, ageDifDate });
+let ageDif = Date.now() - Date.parse('02.04.1999')
+let ageDifDate = new Date(ageDif)
+let age = ageDifDate.getFullYear() - 1970
+console.log({ age, ageDif, ageDifDate })
 ---
 
 <BaseLayout>
   <>
-    <header
-      id="hello"
-      class="flex items-center flex-col-reverse md:flex-row w-full"
-    >
+    <header id="hello" class="flex items-center flex-col-reverse md:flex-row w-full">
       <div class="flex-1 mt-10 w-full">
         <p class="text-lg font-medium">Hi all, I am</p>
         <h1>Tim Neubauer</h1>
@@ -33,22 +30,18 @@ console.log({ age, ageDif, ageDifDate });
           <p>
             <span class="text-[#4D5BCE]">let</span>
             <span class="text-[#43D9AD]">location</span> =
-            <span class="text-[#E99287]">"Greifswald, Germany"</span>
+            <span class="text-[#E99287]">"Potsdam, Germany"</span>
           </p>
           <p class="comment pt-4">// list of my social links</p>
           <p>
             <span class="text-[#4D5BCE]">const</span>
             <span class="text-[#43D9AD]">githubLink</span> =
-            <a class="text-[#E99287]" href={socials.twitter}
-              >“{socials.github}”</a
-            >
+            <a class="text-[#E99287]" href={socials.twitter}>“{socials.github}”</a>
           </p>
           <p>
             <span class="text-[#4D5BCE]">const</span>
             <span class="text-[#43D9AD]">twitterLink</span> =
-            <a href={socials.twitter} class="text-[#E99287]"
-              >“{socials.twitter}”</a
-            >
+            <a href={socials.twitter} class="text-[#E99287]">“{socials.twitter}”</a>
           </p>
 
           <CTA />
@@ -89,19 +82,17 @@ console.log({ age, ageDif, ageDifDate });
         <h3 class="text-4xl font-medium">_about-me</h3>
         <p class="comment mt-2">// get a small overview of who i am</p>
         <p class="mt-9">
-          As a self-taught Full-Stack Developer, I have a strong passion for web
-          technologies, particularly those on the cutting edge. I have gained a
-          wide range of skills through online platforms like Codecademy, earning
-          multiple certificates in the process. In my free time, I enjoy staying
-          current with the tech industry, particularly in regards to cloud
-          computing and web3. My desire for continuous learning extends beyond
-          formal education, as I have sought out a variety of online resources
-          and communities to supplement my knowledge. I have a track record of
-          successfully applying my skills to real-world problems and am always
-          eager to take on new challenges. While I may not have a traditional
-          computer science education, my dedication and capabilities as a
-          developer have been proven through various projects and clients. I am
-          constantly striving to improve and stay at the forefront of my field.
+          As a self-taught Full-Stack Developer, I have a strong passion for web technologies,
+          particularly those on the cutting edge. I have gained a wide range of skills through
+          online platforms like Codecademy, earning multiple certificates in the process. In my free
+          time, I enjoy staying current with the tech industry, particularly in regards to cloud
+          computing and web3. My desire for continuous learning extends beyond formal education, as
+          I have sought out a variety of online resources and communities to supplement my
+          knowledge. I have a track record of successfully applying my skills to real-world problems
+          and am always eager to take on new challenges. While I may not have a traditional computer
+          science education, my dedication and capabilities as a developer have been proven through
+          various projects and clients. I am constantly striving to improve and stay at the
+          forefront of my field.
         </p>
         <CTA />
       </div>
@@ -109,10 +100,7 @@ console.log({ age, ageDif, ageDifDate });
     <section id="projects" class="flex flex-col">
       <h3 class="text-4xl font-medium">_projects</h3>
       <div>
-        <div
-          id="projects-list"
-          class="flex flex-col justify-between w-full mt-12"
-        >
+        <div id="projects-list" class="flex flex-col justify-between w-full mt-12">
           <PorjectCard
             img="https://i.ytimg.com/vi/48NWaLkDcME/maxresdefault.jpg"
             link="https://github.com/devtimnbr/cloudflare-formdata-mailer"
