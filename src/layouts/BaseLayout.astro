@@ -1,8 +1,8 @@
 ---
-import "../styles.css";
-import { Sprite } from "astro-icon";
-import Navbar from "../components/Navbar.astro";
-import { socials } from "../constants/socials";
+import '../styles.css'
+import { Sprite } from 'astro-icon'
+import Navbar from '../components/Navbar.astro'
+import { socials } from '../constants/socials'
 ---
 
 <html lang="en">
@@ -17,23 +17,9 @@ import { socials } from "../constants/socials";
       rel="stylesheet"
     />
     <!-- favicons -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicons/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicons/favicon-16x16.png"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
     <link rel="manifest" href="/favicons/site.webmanifest" />
     <link rel="shortcut icon" href="/favicons/favicon.ico" />
 
@@ -49,21 +35,17 @@ import { socials } from "../constants/socials";
     />
     <script
       async
-      defer
-      data-website-id="c842b4dd-76aa-4a3f-ae98-8396af131dcf"
-      src="https://analytics.timneubauer.dev/umami.js"
-    ></script>
+      src="https://umami.timneubauer.dev/script.js"
+      data-website-id="faffdc28-b629-4c72-9408-720f6c2f50ba"></script>
   </head>
   <body class="bg-[#232339] font-fira">
     <Sprite.Provider>
       <Navbar />
       <main class="container mx-auto px-4 md:px-0 py-40"><slot /></main>
       <footer
-        class="fixed bottom-0 flex border-t border-[#1E2D3D] text-[#7790a8] bg-[#232339] w-full"
-      >
+        class="fixed bottom-0 flex border-t border-[#1E2D3D] text-[#7790a8] bg-[#232339] w-full">
         <div
-          class="container mx-auto px-8 border-x sm:border-x-0 sm:px-0 border-[#1E2D3D] flex flex-col sm:flex-row justify-between items-start sm:items-center"
-        >
+          class="container mx-auto px-8 border-x sm:border-x-0 sm:px-0 border-[#1E2D3D] flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div class="sm:border-x sm:border-[#1E2D3D] flex">
             <p class="sm:px-8 pt-2 sm:py-4 flex items-center">
               find me at:
@@ -79,12 +61,8 @@ import { socials } from "../constants/socials";
           <p class="">
             <a
               class="flex sm:px-8 py-2 sm:py-4 items-center sm:border-r border-[#1E2D3D]"
-              href="mailto:hello@timneubauer.dev"
-            >
-              hello@timneubauer.dev <Sprite
-                name="clarity:email-solid"
-                class="w-4 h-4 ml-2"
-              />
+              href="mailto:hello@timneubauer.dev">
+              hello@timneubauer.dev <Sprite name="clarity:email-solid" class="w-4 h-4 ml-2" />
             </a>
           </p>
         </div>
