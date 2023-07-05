@@ -41,7 +41,7 @@ import { socials } from '../constants/socials'
   <body class="bg-[#232339] font-fira">
     <Sprite.Provider>
       <Navbar />
-      <main class="container mx-auto px-4 md:px-0 py-40"><slot /></main>
+      <div class="container mx-auto px-4 md:px-0 py-40"><slot /></div>
       <footer
         class="fixed bottom-0 flex border-t border-[#1E2D3D] text-[#7790a8] bg-[#232339] w-full">
         <div
@@ -60,7 +60,7 @@ import { socials } from '../constants/socials'
           </div>
           <p class="">
             <a
-              class="flex sm:px-8 py-2 sm:py-4 items-center sm:border-r border-[#1E2D3D]"
+              class="flex sm:px-8 py-2 sm:py-4 items-center sm:border-r border-[#1E2D3D] font-size-"
               href="mailto:hello@timneubauer.dev">
               hello@timneubauer.dev <Sprite name="clarity:email-solid" class="w-4 h-4 ml-2" />
             </a>

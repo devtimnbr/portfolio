@@ -1,29 +1,27 @@
 ---
-import { Sprite } from "astro-icon";
+import { Sprite } from 'astro-icon'
 
 interface Props {
-  title: string;
-  img: string;
-  comment: string;
-  description: string;
-  link: string;
-  date: string;
+  title: string
+  img: string
+  comment: string
+  description: string
+  link: string
+  date: string
 }
 
-const { title, img, description, link, date } = Astro.props;
+const { title, img, description, link, date } = Astro.props
 ---
 
 <div class="md:max-w-lg lg:max-w-md bg-[#232339] md:flex-1/2 lg:flex-1/3 px-2">
   <img class="w-full h-56 rounded-t-lg object-cover" src={img} />
   <div class="mt-6">
     <p class="text-xl font-bold">{title}</p>
-    <p class="comment mt-1">// Written on: {date}</p>
+    <p class="comment mt-1">// Written at: {date}</p>
     <p class="mt-2">{description}</p>
     <div class="mt-2 text-sm text-[#95AAFB]">
       <a href={link} class="flex items-center cursor-pointer"
-        ><span
-          class="inline-flex w-6 h-6 justify-center items-center bg-[#2A337E] rounded-full"
-        >
+        ><span class="inline-flex w-6 h-6 justify-center items-center bg-[#2A337E] rounded-full">
           <Sprite name="akar-icons:book" class="w-4 h-4" />
         </span>
         <span class="ml-3">Read more</span>

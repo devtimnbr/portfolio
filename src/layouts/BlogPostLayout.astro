@@ -1,20 +1,20 @@
 ---
-import type { MarkdownLayoutProps } from "astro";
-import ContactForm from "../components/ContactForm.astro";
-import BaseLayout from "./BaseLayout.astro";
+import type { MarkdownLayoutProps } from 'astro'
+import ContactForm from '../components/ContactForm.astro'
+import BaseLayout from './BaseLayout.astro'
 
 type Props = MarkdownLayoutProps<{
   // Define frontmatter props here
-  title: string;
-  author: string;
-  date: string;
-  img: string;
-  description: string;
-}>;
+  title: string
+  author: string
+  date: string
+  img: string
+  description: string
+}>
 
-export type BlogProps = Props;
+export type BlogProps = Props
 
-const { frontmatter } = Astro.props;
+const { frontmatter } = Astro.props
 ---
 
 <head>
@@ -23,40 +23,40 @@ const { frontmatter } = Astro.props;
 </head>
 
 <script>
-  let copyButtonLabel = "Copy Code";
-  let codeBlocks = Array.from(document.querySelectorAll("pre"));
+  let copyButtonLabel = 'Copy Code'
+  let codeBlocks = Array.from(document.querySelectorAll('pre'))
 
   for (let codeBlock of codeBlocks) {
-    let wrapper = document.createElement("div");
-    wrapper.style.position = "relative";
+    let wrapper = document.createElement('div')
+    wrapper.style.position = 'relative'
 
-    let copyButton = document.createElement("button");
-    copyButton.className = "copy-code";
-    copyButton.innerHTML = copyButtonLabel;
+    let copyButton = document.createElement('button')
+    copyButton.className = 'copy-code'
+    copyButton.innerHTML = copyButtonLabel
 
-    codeBlock.setAttribute("tabindex", "0");
-    codeBlock.appendChild(copyButton);
+    codeBlock.setAttribute('tabindex', '0')
+    codeBlock.appendChild(copyButton)
     // wrap codebock with relative parent element
-    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
-    wrapper.appendChild(codeBlock);
+    codeBlock.parentNode.insertBefore(wrapper, codeBlock)
+    wrapper.appendChild(codeBlock)
 
-    copyButton.addEventListener("click", async () => {
-      await copyCode(codeBlock, copyButton);
-    });
+    copyButton.addEventListener('click', async () => {
+      await copyCode(codeBlock, copyButton)
+    })
   }
 
   async function copyCode(block, button) {
-    let code = block.querySelector("code");
-    let text = code.innerText;
+    let code = block.querySelector('code')
+    let text = code.innerText
 
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(text)
 
     // visual feedback that task is completed
-    button.innerText = "Code Copied";
+    button.innerText = 'Code Copied'
 
     setTimeout(() => {
-      button.innerText = copyButtonLabel;
-    }, 700);
+      button.innerText = copyButtonLabel
+    }, 700)
   }
 </script>
 
@@ -66,10 +66,7 @@ const { frontmatter } = Astro.props;
     <p class="mt-4 text-xs">Written on: {frontmatter.date}</p>
     <p class="mt-4">{frontmatter.description}</p>
 
-    <img
-      src={frontmatter.img}
-      class="rounded-md h-1/6 mt-12 w-full object-cover mb-12"
-    />
+    <img src={frontmatter.img} class="rounded-md h-1/6 mt-12 w-full object-cover mb-12" />
 
     <!-- <div class="blog"> -->
     <slot />
@@ -79,3 +76,17 @@ const { frontmatter } = Astro.props;
     <ContactForm />
   </div>
 </BaseLayout>
+
+<style lang="scss" is:global>
+  .blog h1 {
+    @apply text-4xl font-bold;
+  }
+
+  .blog h2 {
+    @apply mb-0 text-3xl font-bold;
+  }
+
+  .blog h3 {
+    @apply mb-0 text-xl font-bold;
+  }
+</style>
