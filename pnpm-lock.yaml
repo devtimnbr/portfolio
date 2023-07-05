@@ -8,15 +8,13 @@ specifiers:
   astro-icon: ^0.7.3
   prettier: ^2.7.1
   prettier-plugin-tailwindcss: ^0.1.13
-  sass: ^1.63.6
   tailwindcss: ^3.0.24
 
 dependencies:
   '@astrojs/cloudflare': 3.1.2
   '@astrojs/tailwind': 2.1.3_tailwindcss@3.2.4
-  astro: 1.9.1_sass@1.63.6
+  astro: 1.9.1
   astro-icon: 0.7.3
-  sass: 1.63.6
   tailwindcss: 3.2.4
 
 devDependencies:
@@ -747,7 +745,7 @@ packages:
       svgo: 2.8.0
     dev: false
 
-  /astro/1.9.1_sass@1.63.6:
+  /astro/1.9.1:
     resolution: {integrity: sha512-aQ6rvAP4w4VCgipVYA/zPmnkuTbFrMZ/+x/sAv2W1uJHWU2iQmrVRrrjUFJl+i1TuYYlHAuC2vKK7aRyXCjD4A==}
     engines: {node: ^14.18.0 || >=16.12.0, npm: '>=6.14.0'}
     hasBin: true
@@ -811,7 +809,7 @@ packages:
       typescript: 4.9.4
       unist-util-visit: 4.1.1
       vfile: 5.3.6
-      vite: 3.2.5_sass@1.63.6
+      vite: 3.2.5
       vitefu: 0.2.4_vite@3.2.5
       yargs-parser: 21.1.1
       zod: 3.20.2
@@ -2051,10 +2049,6 @@ packages:
 
   /ieee754/1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
-    dev: false
-
-  /immutable/4.3.0:
-    resolution: {integrity: sha512-0AOCmOip+xgJwEVTQj1EfiDDOkPmuyllDuTuEX+DDXUgapLAsBIfkg3sxCYyCEA8mQqZrrxPUGjcOQ2JS3WLkg==}
     dev: false
 
   /import-meta-resolve/2.2.1:
@@ -3363,16 +3357,6 @@ packages:
       suf-log: 2.5.3
     dev: false
 
-  /sass/1.63.6:
-    resolution: {integrity: sha512-MJuxGMHzaOW7ipp+1KdELtqKbfAWbH7OLIdoSMnVe3EXPMTmxTmlaZDCTsgIpPCs3w99lLo9/zDKkOrJuT5byw==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-    dependencies:
-      chokidar: 3.5.3
-      immutable: 4.3.0
-      source-map-js: 1.0.2
-    dev: false
-
   /section-matter/1.0.0:
     resolution: {integrity: sha512-vfD3pmTzGpufjScBh50YHKzEu2lxBWhVEHsNGoEXmCmn2hKGfeNLYMzCJpe8cD7gqX7TJluOVpBkAequ6dgMmA==}
     engines: {node: '>=4'}
@@ -3844,7 +3828,7 @@ packages:
       vfile-message: 3.1.3
     dev: false
 
-  /vite/3.2.5_sass@1.63.6:
+  /vite/3.2.5:
     resolution: {integrity: sha512-4mVEpXpSOgrssFZAOmGIr85wPHKvaDAcXqxVxVRZhljkJOMZi1ibLibzjLHzJvcok8BMguLc7g1W6W/GqZbLdQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3873,7 +3857,6 @@ packages:
       postcss: 8.4.21
       resolve: 1.22.1
       rollup: 2.79.1
-      sass: 1.63.6
     optionalDependencies:
       fsevents: 2.3.2
     dev: false
@@ -3886,7 +3869,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 3.2.5_sass@1.63.6
+      vite: 3.2.5
     dev: false
 
   /vscode-css-languageservice/6.2.1:
