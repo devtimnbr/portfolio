@@ -19,7 +19,19 @@ const { frontmatter } = Astro.props
 
 <head>
   <title>{frontmatter.title}</title>
-  <meta name={frontmatter.description} />
+  <meta name="description" content={frontmatter.description} />
+
+  <!--  Essential META Tags -->
+  <meta property="og:title" content={frontmatter.title} />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content={frontmatter.img} />
+  <meta property="og:url" content={Astro.url.href} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!--  Non-Essential, But Recommended -->
+  <meta property="og:description" content={frontmatter.description} />
+  <meta property="og:site_name" content="Tim Neubauer | Full Stack Engineer<" />
+  <meta name="twitter:image:alt" content={frontmatter.title} />
 </head>
 
 <script>
@@ -63,14 +75,10 @@ const { frontmatter } = Astro.props
 <BaseLayout>
   <div class="max-w-xl lg:max-w-3xl mx-auto blog">
     <h1>{frontmatter.title}</h1>
-    <p class="mt-4 text-xs">Written on: {frontmatter.date}</p>
+    <p class="mt-4 text-xs">Written at: {frontmatter.date}</p>
     <p class="mt-4">{frontmatter.description}</p>
-
     <img src={frontmatter.img} class="rounded-md h-1/6 mt-12 w-full object-cover mb-12" />
-
-    <!-- <div class="blog"> -->
     <slot />
-    <!-- </div> -->
   </div>
   <div class="mt-20">
     <ContactForm />
