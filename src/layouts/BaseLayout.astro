@@ -33,17 +33,18 @@ import { socials } from '../constants/socials'
       content="Certified Full Stack Engineer based in Germany with a passion for the
     cutting edge."
     />
-    <script
+    <!--     <script
       async
       src="https://umami.timneubauer.dev/script.js"
-      data-website-id="faffdc28-b629-4c72-9408-720f6c2f50ba"></script>
+      data-website-id="faffdc28-b629-4c72-9408-720f6c2f50ba"
+    ></script> -->
   </head>
   <body class="bg-[#232339] font-fira">
     <Sprite.Provider>
       <Navbar />
-      <div class="container mx-auto px-4 md:px-0 py-40"><slot /></div>
+      <div class="container mx-auto px-4 md:px-0 py-24 lg:py-40"><slot /></div>
       <footer
-        class="fixed bottom-0 flex border-t border-[#1E2D3D] text-[#7790a8] bg-[#232339] w-full">
+        class="sm:fixed bottom-0 flex border-t border-[#1E2D3D] text-[#7790a8] bg-[#232339] w-full">
         <div
           class="container mx-auto px-8 border-x sm:border-x-0 sm:px-0 border-[#1E2D3D] flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div class="sm:border-x sm:border-[#1E2D3D] flex">
