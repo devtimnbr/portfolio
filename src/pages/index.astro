@@ -77,18 +77,8 @@ import { socials } from '../constants/socials'
         <h3 class="text-4xl font-medium">_about-me</h3>
         <p class="comment mt-2">// get a small overview of who i am</p>
         <p class="mt-9">
-          As a self-taught Full-Stack Developer, I have a strong passion for web technologies,
-          particularly those on the cutting edge. I have gained a wide range of skills through
-          online platforms like Codecademy, earning multiple certificates in the process. In my free
-          time, I enjoy staying current with the tech industry, particularly in regards to cloud
-          computing and web3. My desire for continuous learning extends beyond formal education, as
-          I have sought out a variety of online resources and communities to supplement my
-          knowledge. I have a track record of successfully applying my skills to real-world problems
-          and am always eager to take on new challenges. While I may not have a traditional computer
-          science education, my dedication and capabilities as a developer have been proven through
-          various projects and clients. I am constantly striving to improve and stay at the
-          forefront of my field.
-        </p>
+          As a self-taught Full-Stack Developer, my passion for cutting-edge web technologies drives me to continually expand my skill set. I've honed my abilities through platforms like Codecademy, earning multiple certificates along the way. In my spare time, I stay abreast of the tech industry, with a particular focus on cloud computing and Bitcoin. My commitment to learning extends beyond formal education; I actively seek out online resources and communities to augment my knowledge. I have a proven track record of applying my skills to real-world challenges and thrive on new opportunities. While I lack a traditional computer science background, my dedication and competence as a developer shine through in my projects and collaborations. My aim is to constantly evolve and remain at the forefront of my field.
+        </p> 
         <CTA />
       </div>
     </section>
@@ -97,33 +87,42 @@ import { socials } from '../constants/socials'
       <div>
         <div id="projects-list" class="flex flex-col justify-between w-full mt-12">
           <ProjectCard
-            img="https://i.ytimg.com/vi/48NWaLkDcME/maxresdefault.jpg"
-            link="https://github.com/devtimnbr/cloudflare-formdata-mailer"
-            title="Cloudflare FormData Mailer"
-            comment="Cloudflare Workers, TypeScript"
-            description="This project is a cloudflare worker which sends emails through the mailchannel api. The message content is constructed from the request FormData object."
+          img="/projects/dca.png"
+          link="https://github.com/devtimnbr/crypto-dca-bot"
+          title="Crypto DCA Bot"
+          comment="TypeScript, Docker"
+          description="Within the framework of my investment strategy, I spearheaded the development of the Crypto DCA Bot project. This project showcases an automated cryptocurrency investment script, meticulously engineered with the CCXT library. It excels in executing cryptocurrency purchases, tailoring each transaction according to user-configured settings while strictly abiding by the dollar-cost averaging strategy."
+        />
+        
+          <ProjectCard
+          img="/projects/bitcoin-is-complex.com.png"
+          link="https://bitcoin-is-complex.com"
+          title="Bitcoin Is Complex"
+          comment="HTML, CSS, JavaScript"
+          description="In 'Bitcoin is Complex', I invite you to join me on a captivating journey into the intricate world of Bitcoin. This project, born out of my exploration during the Harvard CS50 course, delves into the enigmatic nature of this revolutionary digital currency. From the lens of mathematics, physics, informatics, biology, economics, and the rich tapestry of monetary history, we unravel the diverse dimensions that converge to shape the complexity of Bitcoin. "
+        />
+          <ProjectCard
+            img="/projects/race-fuel-calculator.pages.dev.png"
+            link="https://race-fuel-calculator.pages.dev"
+            title="Sim Racing Fuel Calculator"
+            comment="Svelte, Tailwind, TypeScript, PWA"
+            description="The 'Sim Racing Fuel Calculator' was as an afternoon project, serving dual purposes: to keep my coding skills sharp and to enhance my enjoyment of a new hobby. This handy tool allows you to calculate the precise amount of fuel required based on various factors such as lap time, race duration, and fuel consumption. Whether you're a seasoned sim racer or a newcomer, this calculator simplifies the fuel planning process, ensuring you're always prepared for your virtual races."
           />
           <ProjectCard
-            right
-            img="https://repository-images.githubusercontent.com/12226786/cf816100-9a08-11ea-8fc1-7af9d4bcbf9e"
+            
+            img="/projects/sharp.png"
             link="https://github.com/devtimnbr/siom"
             title="Siom"
             comment="Nodejs, TypeScript, Sharp, Docker"
-            description="Siom stands for sharp image optimizer microservice and explains itself. It is used to resize images on the fly, convert images to webp and is very powerful behind a cache proxy like Choxy."
+            description="Siom, short for Sharp Image Optimizer Microservice, is a versatile tool designed to resize images on the fly and effortlessly convert them to the WebP format. Throughout my journey, I conceptualized and built Siom as a robust image optimization solution, catering to the growing need for responsive and efficient web content. Siom streamlines the image optimization process, elevating web performance and enhancing the user experience."
           />
           <ProjectCard
-            img="data:image/png;base64,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"
-            title="DeFi dApp built on Avalanche"
-            comment="Next.js, TypeScript, Ethers, Vercel"
-            description="Simple Dapp for viewing contract stats and interacting with contract functions."
-          />
-          <ProjectCard
-            right
-            img="https://block-builders.de/wp-content/uploads/2021/09/Solana-thmp-678x381.png"
-            title="NFT and dApp development on Solana Chain"
-            comment="Next.js, TypeScript, CandyMachine, Cloudflare"
-            description="Developing a minting Dapp and creating Solana NFTs powered by CandyMachine V1."
-          />
+          img="/projects/cloudflare.jpg"
+          link="https://github.com/devtimnbr/cloudflare-formdata-mailer"
+          title="Cloudflare FormData Mailer"
+          comment="Cloudflare Workers, TypeScript"
+          description="'Cloudflare FormData Mailer' is a Cloudflare worker project designed to seamlessly send emails through the Mailchannel API. It efficiently constructs email content from the request FormData object, simplifying the email-sending process. Choxy offers a streamlined solution for email communication within web applications."
+        />
         </div>
         <CTA center />
       </div>
