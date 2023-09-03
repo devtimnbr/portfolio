@@ -6,10 +6,6 @@ import BlogPostList from '../components/BlogPostList.astro'
 import ContactForm from '../components/ContactForm.astro'
 import CTA from '../components/CTA.astro'
 import { socials } from '../constants/socials'
-
-let ageDif = Date.now() - Date.parse('02.04.1999')
-let ageDifDate = new Date(ageDif)
-let age = ageDifDate.getFullYear() - 1970
 ---
 
 <BaseLayout>
@@ -22,23 +18,23 @@ let age = ageDifDate.getFullYear() - 1970
         <div class="font-medium mt-9 flex flex-col space-y-1">
           <p class="comment">// personal data</p>
           <p>
-            <span class="text-[#4D5BCE]">let</span>
+            <span class="text-[#4D5BCE]">let{" "}</span>
             <span class="text-[#43D9AD]">age</span> =
-            <span id="age" class="text-[#E99287]">{age}</span>
+            <span id="age" class="text-[#E99287]">24</span>
           </p>
           <p>
-            <span class="text-[#4D5BCE]">let</span>
+            <span class="text-[#4D5BCE]">let{" "}</span>
             <span class="text-[#43D9AD]">location</span> =
             <span class="text-[#E99287]">"Potsdam, Germany"</span>
           </p>
           <p class="comment pt-4">// list of my social links</p>
           <p>
-            <span class="text-[#4D5BCE]">const</span>
+            <span class="text-[#4D5BCE]">const{" "}</span>
             <span class="text-[#43D9AD]">githubLink</span> =
-            <a class="text-[#E99287]" href={socials.twitter}>“{socials.github}”</a>
+            <a class="text-[#E99287]" href={socials.github}>“{socials.github}”</a>
           </p>
           <p>
-            <span class="text-[#4D5BCE]">const</span>
+            <span class="text-[#4D5BCE]">const{" "}</span>
             <span class="text-[#43D9AD]">twitterLink</span> =
             <a href={socials.twitter} class="text-[#E99287]">“{socials.twitter}”</a>
           </p>
@@ -139,8 +135,8 @@ let age = ageDifDate.getFullYear() - 1970
 
       <a href="/blog/" class="btn-primary mt-12 block">See more blog posts</a>
     </section>
-    <section>
+    
       <ContactForm />
-    </section>
+    
   </>
 </BaseLayout>

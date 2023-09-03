@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BlogCard from './BlogCard.astro'
 
 type Props = {
@@ -7,26 +8,27 @@ type Props = {
 
 const { limit } = Astro.props
 
-let posts = await Astro.glob('../pages/blog/*.md')
-posts = posts.filter((post) => !post.frontmatter.draft)
+
+
+let posts = await getCollection("blog")//await Astro.glob('../pages/blog/*.md')
+posts = posts.filter((post) => !post.data.draft)
+
 posts = posts.sort(
-  (a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 )
 
 if (limit) posts = posts.slice(0, limit)
 ---
 
-<div class={`flex w-full flex-wrap gap-4 `}>
+<div class={`flex w-full flex-wrap`}>
   {
     posts.length < 1 ? (
       <h2 class="mt-6 text-center text-8xl text-[#6d6d8e]">Coming Soon</h2>
     ) : (
-      <div class={`mt-12 flex w-full flex-col gap-y-16 md:flex-row md:flex-wrap`}>
+      <div class={`mt-12 flex w-full flex-col gap-y-16 justify-between md:flex-row md:flex-wrap`}>
         {posts.map((post) => {
-          const { title, img, date, description } = post.frontmatter
-          const url = post.url
-
-          post.frontmatter.de
+          const { title, img, date, description } = post.data
+          const url = "/" + post.collection + "/" + post.slug
 
           return (
             <BlogCard

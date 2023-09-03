@@ -1,4 +1,5 @@
 ---
+// TO-DO: write comment and rename to more precise names
 interface Props {
     headers: { depth: number; slug: string; text: string }[]
 }
@@ -41,15 +42,15 @@ const converted = convert(
     headers.map((el) => ({ ...el, subheadings: [] })),
     2
 )
----
 
+
+---
 <ol>
     {
-        /* TO-DO: convert number display to vanilla html/css instead of this workaround (in a rush for ravetheplanet) */
         converted.map((el, i) => (
             <li class="m-0 flex p-0">
                 <a class="flex space-x-2" href={`#${el.slug}`}>
-                    <span class="block">{i}.</span>
+                    <span class="block">{i+1}.</span>
                     <span class="underline">{el.text}</span>
                 </a>
 

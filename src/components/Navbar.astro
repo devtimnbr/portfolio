@@ -2,95 +2,125 @@
 import { Sprite } from "astro-icon";
 ---
 
-<head>
-  <!-- Hamburger Menu Script -->
-  <script>
-    document.querySelector("#hamburger").addEventListener("click", () => {
-      const nav = document.querySelector("#navlinks");
-      const hamburger = document.querySelector("#hamburger");
-      const bars = hamburger.getElementsByTagName("span");
+<script>
+  // Hamburger Menu Script
+  function setupHamburger() {
+    const hamburger = document.querySelector("#hamburger") as HTMLElement;
+    const links = document.querySelectorAll("#navlinks a")
+    const nav = document.querySelector("#navlinks") as HTMLElement;
+    const bars = hamburger.getElementsByTagName("span");
       const barStyles = { active: "bg-gray-300", default: "bg-[#7790a8]" };
       const hamburgerContainerStyles = {
         active: "border-gray-300",
         default: "border-[#7790a8]",
       };
 
-      if (nav.classList.contains("hidden")) {
-        nav.classList.remove("hidden");
-        hamburger.classList.add(hamburgerContainerStyles.active);
-        hamburger.classList.remove(hamburgerContainerStyles.default);
-        for (const bar of bars) {
-          bar.classList.add(barStyles.active);
-          bar.classList.remove(barStyles.default);
-        }
-      } else {
-        nav.classList.add("hidden");
+    function closeHamburger() {
+      nav.classList.add("hidden");
         hamburger.classList.remove(hamburgerContainerStyles.active);
         hamburger.classList.add(hamburgerContainerStyles.default);
         for (const bar of bars) {
           bar.classList.add(barStyles.default);
           bar.classList.remove(barStyles.active);
         }
+    }
+
+    function openHamburger() {
+      nav.classList.remove("hidden");
+        hamburger.classList.add(hamburgerContainerStyles.active);
+        hamburger.classList.remove(hamburgerContainerStyles.default);
+        for (const bar of bars) {
+          bar.classList.add(barStyles.active);
+          bar.classList.remove(barStyles.default);
+        }
+    }
+
+    hamburger.addEventListener("click", () => {
+      if (nav.classList.contains("hidden")) {
+        openHamburger()
+      } else {
+        closeHamburger()
       }
     });
-  </script>
-  <!-- Intersection Observer Script -->
-  <script>
-    const hrefsNotIndex = {
-      "#hello": "/",
-      "#about": "/#about",
-      "#projects": "/#projects",
-      "#blog": "/blog/",
-      "#contact": "#contact",
-    };
 
-    // if path is blog make it actuve
-    if (window.location.pathname.includes("/blog")) {
-      document.querySelector('[href="#blog"]').classList.add("active");
-    }
+    // close hamburger menu after click
+    links.forEach(link => link.addEventListener("click", () => {
+      closeHamburger()
+    }))
+  }
 
-    if (window.location.pathname != "/") {
-      Object.keys(hrefsNotIndex).forEach((key) => {
-        (document.querySelector(`[href="${key}"]`) as any).href =
-          hrefsNotIndex[key];
-      });
-    }
+  // Intersection Observer Script
+  function setupObserver() {
+        
+    // simple function to use for callback in the intersection observer
+    const changeNav: IntersectionObserverCallback = (entries, observer) => {
 
-    // init observer
-    const callback: IntersectionObserverCallback = (entries, observer) => {
-      entries.forEach((entry) => {
-        console.log(entry.target.id);
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.51) {
-          // remove old active class
-          const lastActiveElement = document.querySelectorAll(".active");
-          if (lastActiveElement)
-            lastActiveElement.forEach((el) => el.classList.remove("active"));
-          // find matching link & add appropriate class
-          const id = entry.target.id;
-          document
-            .querySelectorAll(`[href="#${id}"]`)
-            .forEach((el) => el.classList.add("active"));
+entries.forEach((entry) => {
+  
+  // verify the element is intersecting
+  if(entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+    // remove old active class
+    let lastActives = document.querySelectorAll('.active')
+    if( lastActives)  lastActives.forEach(lastActive => lastActive.classList.remove('active'));
+    // get id of the intersecting section
+    var id = entry.target.getAttribute('id');
+    // find matching link & add appropriate class
+    var newLinks = document.querySelectorAll(`[href="#${id}"]`);
+    newLinks.forEach((el) => el.classList.add('active'))
+  }
+});
+}
+
+// init the observer
+const options = {
+threshold: 0.55
+}
+
+const observer = new IntersectionObserver(changeNav, options);
+
+// target the elements to be observed
+
+let header = document.querySelector("header")
+let sections: any = document.querySelectorAll('section');
+sections = [header, ...sections]
+
+sections.forEach((section: HTMLElement) => {
+observer.observe(section);
+});  
+  }
+
+
+  document.addEventListener('astro:page-load', (ev) => {
+    setupHamburger()
+
+    const location = (ev.target as Document).location.toString()
+    const pathname = new URL(location).pathname
+
+    if (pathname === "/") {
+      setupObserver()
+    } else if (pathname.startsWith("/blog")) {
+    // Add leading slash to all hrefs in navigationLinks
+    const navigationLinks = document.querySelectorAll('#navlinks a');
+
+    navigationLinks.forEach((link) => {
+      if(link.getAttribute("href")?.startsWith("#blog")) {
+            link.setAttribute('href', "/blog")
+      } else if (!link.getAttribute('href')?.startsWith('/')) {
+
+
+          link.setAttribute('href', '/' + link.getAttribute('href'));
+
+          
         }
       });
-    };
 
-    const observer = new IntersectionObserver(callback, {
-      threshold: 0.51,
-      rootMargin: "54px",
-    });
+      // Add "active" class to the blog link
+      document.querySelector(`[href="/blog"]`)?.classList.add("active");
+    }
+    
+  });
+</script>
 
-    // target the elements to be observed
-    const sections = [
-      document.querySelector("header"),
-      ...document.querySelectorAll("section"),
-    ];
-
-    // observe all target elements
-    sections.forEach((section) => {
-      if (section) observer.observe(section);
-    });
-  </script>
-</head>
 
 <nav
   class="fixed z-50 w-full border-b border-[#1E2D3D] text-[#7790a8] bg-[#232339]"

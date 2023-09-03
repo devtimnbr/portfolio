@@ -5,15 +5,15 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				"fira": ["Fira Code"]
+				fira: ['Fira Code'],
 			},
 			flex: {
-				"2": "2",
-				"1/2": "0 0 50%",
-				"1/3": "0 0 33.333%"
-			}
+				2: '2',
+				'1/2': '0 0 50%',
+				'1/3': '0 0 33.333%',
+			},
 		},
 	},
-	
+
 	plugins: [],
 }

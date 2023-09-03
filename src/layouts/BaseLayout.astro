@@ -3,6 +3,7 @@ import '../styles.css'
 import { Sprite } from 'astro-icon'
 import Navbar from '../components/Navbar.astro'
 import { socials } from '../constants/socials'
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <html lang="en">
@@ -11,6 +12,7 @@ import { socials } from '../constants/socials'
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    
     <!-- fonts -->
     <link
       href="https://cache.timneubauer.dev/fonts/fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&display=swap"
@@ -38,10 +40,11 @@ import { socials } from '../constants/socials'
       src="https://umami.timneubauer.dev/script.js"
       data-website-id="faffdc28-b629-4c72-9408-720f6c2f50ba"
     ></script> -->
+    <ViewTransitions  />
   </head>
   <body class="bg-[#232339] font-fira">
     <Sprite.Provider>
-      <Navbar />
+      <Navbar  />
       <div class="container mx-auto px-4 md:px-0 py-24 lg:py-40"><slot /></div>
       <footer
         class="sm:fixed bottom-0 flex border-t border-[#1E2D3D] text-[#7790a8] bg-[#232339] w-full">
