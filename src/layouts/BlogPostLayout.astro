@@ -5,12 +5,13 @@ import BaseLayout from './BaseLayout.astro'
 import TableOfContents from '../components/TableOfContents.astro'
 
 type Props = MarkdownLayoutProps<{
-  // Define frontmatter props here
-  title: string
-  author: string
-  date: string
-  img: string
-  description: string
+	// Define frontmatter props here
+	title: string
+	author: string
+	date: string
+	img: string
+	description: string
+	block: number
 }>
 
 export type BlogProps = Props
@@ -19,120 +20,126 @@ const { frontmatter } = Astro.props
 ---
 
 <head>
-  <title>{frontmatter.title}</title>
-  <meta name="description" content={frontmatter.description} />
+	<title>{frontmatter.title}</title>
+	<meta name="description" content={frontmatter.description} />
 
-  <!--  Essential META Tags -->
-  <meta property="og:title" content={frontmatter.title} />
-  <meta property="og:type" content="article" />
-  <meta property="og:image" content={frontmatter.img} />
-  <meta property="og:url" content={Astro.url.href} />
-  <meta name="twitter:card" content="summary_large_image" />
+	<!--  Essential META Tags -->
+	<meta property="og:title" content={frontmatter.title} />
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content={frontmatter.img} />
+	<meta property="og:url" content={Astro.url.href} />
+	<meta name="twitter:card" content="summary_large_image" />
 
-  <!--  Non-Essential, But Recommended -->
-  <meta property="og:description" content={frontmatter.description} />
-  <meta property="og:site_name" content="Tim Neubauer | Full Stack Engineer" />
-  <meta name="twitter:image:alt" content={frontmatter.title} />
+	<!--  Non-Essential, But Recommended -->
+	<meta property="og:description" content={frontmatter.description} />
+	<meta property="og:site_name" content="Tim Neubauer | Full Stack Engineer" />
+	<meta name="twitter:image:alt" content={frontmatter.title} />
 </head>
 
 <script>
-document.addEventListener('astro:page-load', () => {
-  initCopyCodeButton()
-});
+	document.addEventListener('astro:page-load', () => {
+		initCopyCodeButton()
+	})
 
-let copyButtonLabel = 'Copy Code';
-  
-function initCopyCodeButton() {
-  let codeBlocks = Array.from(document.querySelectorAll('pre'));
+	let copyButtonLabel = 'Copy Code'
 
-  for (let codeBlock of codeBlocks) {
-    let wrapper = document.createElement('div');
-    wrapper.style.position = 'relative';
+	function initCopyCodeButton() {
+		let codeBlocks = Array.from(document.querySelectorAll('pre'))
 
-    let copyButton = document.createElement('button');
-    copyButton.className = 'copy-code';
-    copyButton.innerHTML = copyButtonLabel;
+		for (let codeBlock of codeBlocks) {
+			let wrapper = document.createElement('div')
+			wrapper.style.position = 'relative'
 
-    codeBlock.setAttribute('tabindex', '0');
-    codeBlock.appendChild(copyButton);
-    // wrap codebock with relative parent element
-    codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
-    wrapper.appendChild(codeBlock);
+			let copyButton = document.createElement('button')
+			copyButton.className = 'copy-code'
+			copyButton.innerHTML = copyButtonLabel
 
-    copyButton.addEventListener('click', async () => {
-      await copyCode(codeBlock, copyButton);
-    });
-}
-}
+			codeBlock.setAttribute('tabindex', '0')
+			codeBlock.appendChild(copyButton)
+			// wrap codebock with relative parent element
+			codeBlock.parentNode?.insertBefore(wrapper, codeBlock)
+			wrapper.appendChild(codeBlock)
 
-async function copyCode(block: HTMLElement, button: HTMLButtonElement) {
-  let code = block.querySelector('code');
-  let text = code?.innerText ? code?.innerText : "";
+			copyButton.addEventListener('click', async () => {
+				await copyCode(codeBlock, copyButton)
+			})
+		}
+	}
 
-  await navigator.clipboard.writeText(text);
+	async function copyCode(block: HTMLElement, button: HTMLButtonElement) {
+		let code = block.querySelector('code')
+		let text = code?.innerText ? code?.innerText : ''
 
-  // visual feedback that task is completed
-  button.innerText = 'Code Copied';
+		await navigator.clipboard.writeText(text)
 
-  setTimeout(() => {
-    button.innerText = copyButtonLabel;
-  }, 700);
-}
+		// visual feedback that task is completed
+		button.innerText = 'Code Copied'
+
+		setTimeout(() => {
+			button.innerText = copyButtonLabel
+		}, 700)
+	}
 </script>
 
 <BaseLayout>
-  <div class="max-w-xl lg:max-w-3xl mx-auto blog">
-    <h1>{frontmatter.title}</h1>
-    <div class="info mt-4">
-      <p class="text-xs">Written at: {frontmatter.date}</p>
-      <p class="text-xs" style="margin-block-start: 0;">Written by: TimGPT</p>
-    </div>
+	<div class="max-w-xl lg:max-w-3xl mx-auto blog">
+		<h1>{frontmatter.title}</h1>
+		<div class="info mt-4">
+			<p class="text-xs">
+				Published at: {frontmatter.date} | <a
+					class="underline"
+					href={'https://timechaincalendar.com/en/block/' + frontmatter.block}
+					target="_blank">{frontmatter.block}</a
+				>
+			</p>
+			<p class="text-xs" style="margin-block-start: 0;">Published by: TimGPT</p>
+		</div>
 
-    <p class="mt-4">{frontmatter.description}</p>
+		<p class="mt-4">{frontmatter.description}</p>
 
-    <img src={frontmatter.img} class="rounded-md h-1/6 mt-12 w-full object-cover mb-12" />
-    <p class="text-xl font-bold mb-0">Table of Contents</p>
-    <TableOfContents headers={Astro.props.headings} />
-    <slot />
-  </div>
-  <div class="mt-20">
-    <ContactForm />
-  </div>
+		<img src={frontmatter.img} class="rounded-md h-1/6 mt-12 w-full object-cover mb-12" />
+		<p class="text-xl font-bold mb-0">Table of Contents</p>
+		<TableOfContents headers={Astro.props.headings} />
+		<div class="text-justify">
+			<slot />
+		</div>
+	</div>
+	<ContactForm />
 </BaseLayout>
 
 <style is:global>
-  .blog h1 {
-    @apply text-4xl font-bold;
-  }
+	.blog h1 {
+		@apply text-4xl font-bold;
+	}
 
-  .blog h2 {
-    @apply mb-0 text-3xl font-bold;
-  }
+	.blog h2 {
+		@apply mb-0 text-3xl font-bold;
+	}
 
-  .blog h3 {
-    @apply mb-0 text-xl font-bold;
-  }
+	.blog h3 {
+		@apply mb-0 text-xl font-bold;
+	}
 
-  .blog ol {
-    list-style: auto;
-    list-style-position: inside;
-  }
+	.blog ol {
+		list-style: auto;
+		list-style-position: inside;
+	}
 
-  .blog ol li {
-    padding: 0.5rem 0;
-  }
+	.blog ol li {
+		padding: 0.5rem 0;
+	}
 
-  .blog ol li p {
-    display: inline;
-  }
+	.blog ol li p {
+		display: inline;
+	}
 
-  ::marker {
-    display: inline;
-    font-weight: 700;
-  }
+	::marker {
+		display: inline;
+		font-weight: 700;
+	}
 
-  .info p {
-    margin-block-start: 0 !important;
-    margin-block-end: 0 !important;
-  }
+	.info p {
+		margin-block-start: 0 !important;
+		margin-block-end: 0 !important;
+	}
 </style>

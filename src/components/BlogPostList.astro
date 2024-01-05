@@ -1,23 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
-import BlogCard from './BlogCard.astro'
+import { getCollection } from "astro:content";
+import BlogCard from "./BlogCard.astro";
 
 type Props = {
-  limit?: number
-}
+  limit?: number;
+};
 
-const { limit } = Astro.props
+const { limit } = Astro.props;
 
-
-
-let posts = await getCollection("blog")//await Astro.glob('../pages/blog/*.md')
-posts = posts.filter((post) => !post.data.draft)
+let posts = await getCollection("blog"); //await Astro.glob('../pages/blog/*.md')
+posts = posts.filter((post) => !post.data.draft);
 
 posts = posts.sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-)
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
 
-if (limit) posts = posts.slice(0, limit)
+if (limit) posts = posts.slice(0, limit);
 ---
 
 <div class={`flex w-full flex-wrap`}>
@@ -25,10 +23,12 @@ if (limit) posts = posts.slice(0, limit)
     posts.length < 1 ? (
       <h2 class="mt-6 text-center text-8xl text-[#6d6d8e]">Coming Soon</h2>
     ) : (
-      <div class={`mt-12 flex w-full flex-col gap-y-16 justify-between md:flex-row md:flex-wrap`}>
+      <div
+        class={`mt-12 flex w-full flex-col gap-y-16 justify-between md:flex-row md:flex-wrap`}
+      >
         {posts.map((post) => {
-          const { title, img, date, description } = post.data
-          const url = "/" + post.collection + "/" + post.slug
+          const { title, img, date, description, block } = post.data;
+          const url = "/" + post.collection + "/" + post.slug;
 
           return (
             <BlogCard
@@ -38,8 +38,9 @@ if (limit) posts = posts.slice(0, limit)
               description={description}
               link={url}
               date={date}
+              block={block}
             />
-          )
+          );
         })}
       </div>
     )

@@ -1,141 +1,166 @@
 ---
-import { Sprite } from 'astro-icon'
+import { Icon } from 'astro-icon/components'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import ProjectCard from '../components/ProjectCard.astro'
 import BlogPostList from '../components/BlogPostList.astro'
 import ContactForm from '../components/ContactForm.astro'
 import CTA from '../components/CTA.astro'
 import { socials } from '../constants/socials'
+
+const projects = [
+	{
+		img: '/projects/coinfeedpro.png',
+		links: ['https://coinfeedpro.com'],
+		title: 'COINFEEDPRO',
+		comment: 'Python, Flask, Docker, SQLite',
+		description:
+			'Presenting COINFEEDPRO, my CS50 final project, an innovative RSS feed aggregator is crafted for the cryptocurrency domain, featuring cutting-edge elements such as AI-driven sentiment analysis and a personalized news stream. Beyond these, the application boasts real-time news updates and a seamless theme switcher, enhancing the overall user experience. While developing this project I got more familiar with Python, Flask and Hugging Face AI models with transformers.',
+	},
+	{
+		img: '/projects/dca.png',
+		links: ['https://github.com/devtimnbr/crypto-dca-bot'],
+		title: 'Crypto DCA Bot',
+		comment: 'TypeScript, Docker',
+		description:
+			'Within the framework of my investment strategy, I spearheaded the development of the Crypto DCA Bot project. This project showcases an automated cryptocurrency investment script, meticulously engineered with the CCXT library. It excels in executing cryptocurrency purchases, tailoring each transaction according to user-configured settings while strictly abiding by the dollar-cost averaging strategy.',
+	},
+	{
+		img: '/projects/bitcoin-is-complex.com.png',
+		links: ['https://bitcoin-is-complex.com', 'https://github.com/devtimnbr/bitcoin-is-complex'],
+		title: 'Bitcoin Is Complex',
+		comment: 'HTML, CSS, JavaScript',
+		description:
+			"In 'Bitcoin is Complex', I invite you to join me on a captivating journey into the intricate world of Bitcoin. This project, born out of my exploration during the Harvard CS50 course, delves into the enigmatic nature of this revolutionary digital currency. From the lens of mathematics, physics, informatics, biology, economics, and the rich tapestry of monetary history, we unravel the diverse dimensions that converge to shape the complexity of Bitcoin. ",
+	},
+	{
+		img: '/projects/race-fuel-calculator.pages.dev.png',
+		links: [
+			'https://race-fuel-calculator.pages.dev',
+			'https://github.com/devtimnbr/race-fuel-calculator',
+		],
+		title: 'Sim Racing Fuel Calculator',
+		comment: 'Svelte, Tailwind, TypeScript, PWA',
+		description:
+			"The 'Sim Racing Fuel Calculator' was as an afternoon project, serving dual purposes: to keep my coding skills sharp and to enhance my enjoyment of a new hobby. This handy tool allows you to calculate the precise amount of fuel required based on various factors such as lap time, race duration, and fuel consumption. Whether you're a seasoned sim racer or a newcomer, this calculator simplifies the fuel planning process, ensuring you're always prepared for your virtual races.",
+	},
+	{
+		img: '/projects/sharp.png',
+		links: ['https://github.com/devtimnbr/siom'],
+		title: 'Siom',
+		comment: 'Nodejs, TypeScript, Sharp, Docker',
+		description:
+			'Siom, short for Sharp Image Optimizer Microservice, is a versatile tool designed to resize images on the fly and effortlessly convert them to the WebP format. Throughout my journey, I conceptualized and built Siom as a robust image optimization solution, catering to the growing need for responsive and efficient web content. Siom streamlines the image optimization process, elevating web performance and enhancing the user experience.',
+	},
+	{
+		img: '/projects/cloudflare.jpg',
+		links: ['https://github.com/devtimnbr/cloudflare-formdata-mailer'],
+		title: 'Cloudflare FormData Mailer',
+		comment: 'Cloudflare Workers, TypeScript',
+		description:
+			"'Cloudflare FormData Mailer' is a Cloudflare worker project designed to seamlessly send emails through the Mailchannel API. It efficiently constructs email content from the request FormData object, simplifying the email-sending process.",
+	},
+]
 ---
 
 <BaseLayout>
-  <>
-    <header id="hello" class="flex items-center flex-col-reverse md:flex-row w-full">
-      <div class="flex-1 mt-10 w-full">
-        <p class="text-lg font-medium">Hi all, I am</p>
-        <h1>Tim Neubauer</h1>
-        <h2 class="text-gradient subheading">&gt; Full-Stack Engineer</h2>
-        <div class="font-medium mt-9 flex flex-col space-y-1">
-          <p class="comment">// personal data</p>
-          <p>
-            <span class="text-[#4D5BCE]">let{" "}</span>
-            <span class="text-[#43D9AD]">age</span> =
-            <span id="age" class="text-[#E99287]">24</span>
-          </p>
-          <p>
-            <span class="text-[#4D5BCE]">let{" "}</span>
-            <span class="text-[#43D9AD]">location</span> =
-            <span class="text-[#E99287]">"Potsdam, Germany"</span>
-          </p>
-          <p class="comment pt-4">// list of my social links</p>
-          <p>
-            <span class="text-[#4D5BCE]">const{" "}</span>
-            <span class="text-[#43D9AD]">githubLink</span> =
-            <a class="text-[#E99287]" href={socials.github}>“{socials.github}”</a>
-          </p>
-          <p>
-            <span class="text-[#4D5BCE]">const{" "}</span>
-            <span class="text-[#43D9AD]">twitterLink</span> =
-            <a href={socials.twitter} class="text-[#E99287]">“{socials.twitter}”</a>
-          </p>
+	<>
+		<header id="hello" class="flex items-center flex-col-reverse md:flex-row w-full">
+			<div class="flex-1 mt-10 w-full">
+				<p class="text-lg font-medium">Hi all, I am</p>
+				<h1 class="font-medium">Tim Neubauer</h1>
+				<h2 class="text-gradient subheading">&gt; Full-Stack Engineer</h2>
+				<div class="font-medium mt-9 flex flex-col space-y-1">
+					<p class="comment">// personal data</p>
+					<p>
+						<span class="text-[#4D5BCE]">let{' '}</span>
+						<span class="text-[#43D9AD]">age</span> =
+						<span id="age" class="text-[#E99287]">24</span>
+					</p>
+					<p>
+						<span class="text-[#4D5BCE]">let{' '}</span>
+						<span class="text-[#43D9AD]">location</span> =
+						<span class="text-[#E99287]">"Potsdam, Germany"</span>
+					</p>
+					<p class="comment pt-4">// list of my social links</p>
+					<p>
+						<span class="text-[#4D5BCE]">const{' '}</span>
+						<span class="text-[#43D9AD]">github</span> =
+						<a class="text-[#E99287]" href={socials.github}>“{socials.github}”</a>
+					</p>
+					<p>
+						<span class="text-[#4D5BCE]">const{' '}</span>
+						<span class="text-[#43D9AD]">twitter_x</span> =
+						<a href={socials.twitter} class="text-[#E99287]">“{socials.twitter}”</a>
+					</p>
 
-          <CTA />
-        </div>
-      </div>
-      <div class="flex-1 flex justify-center items-center">
-        <img src="/hello.svg" />
-      </div>
-    </header>
-    <section id="about" class="flex items-center flex-col-reverse md:flex-row">
-      <div class="flex-1 flex justify-center items-center">
-        <div class="flex flex-wrap showcase gap-16 mt-12 justify-center">
-          <Sprite name="vscode-icons:file-type-html" />
-          <Sprite name="vscode-icons:file-type-css" />
-          <Sprite name="logos:javascript" />
-          <Sprite name="logos:typescript-icon" />
+					<CTA />
+				</div>
+			</div>
+			<div class="flex-1 flex justify-center items-center">
+				<img src="/hello.svg" />
+			</div>
+		</header>
+		<section
+			id="about"
+			class="flex items-center flex-col-reverse md:flex-row max-w-6xl mx-auto gap-x-16">
+			<div class="flex-1 flex justify-center items-center">
+				<div class="flex flex-wrap showcase gap-16 mt-12 justify-center">
+					<Icon name="vscode-icons:file-type-html" />
+					<Icon name="vscode-icons:file-type-css" />
+					<Icon name="logos:javascript" />
+					<Icon name="logos:typescript-icon" />
 
-          <Sprite name="logos:react" />
-          <Sprite name="logos:svelte-icon" />
-          <Sprite name="vscode-icons:file-type-astro" />
-          <Sprite name="vscode-icons:file-type-tailwind" />
+					<Icon name="logos:react" />
+					<Icon name="logos:svelte-icon" />
+					<Icon name="vscode-icons:file-type-astro" />
+					<Icon name="htmx" />
 
-          <Sprite name="logos:nodejs-icon" />
-          <Sprite name="logos:postgresql" />
-          <Sprite name="logos:docker-icon" />
-          <Sprite name="logos:cloudflare" />
+					<Icon name="logos:nodejs-icon" />
+					<Icon name="skill-icons:golang" />
+					<Icon name="logos:postgresql" />
+					<Icon name="logos:docker-icon" />
 
-          <Sprite name="logos:git-icon" />
-          <div class="hidden sm:block md:hidden lg:block">
-            <Sprite name="logos:metamask-icon" />
-          </div>
+					<Icon name="logos:cloudflare-icon" />
+					<Icon name="logos:git-icon" />
+					<Icon name="cib:bitcoin" class="text-[#f2a900]" />
+					<div class="hidden sm:block md:hidden lg:block">
+						<Icon name="lightning" />
+					</div>
+				</div>
+			</div>
+			<div class="flex-1">
+				<h3 class="text-4xl font-medium">_about-me</h3>
+				<p class="comment mt-2">// get a small overview of who i am</p>
+				<p class="mt-9 text-justify">
+					As a self-taught Full-Stack Developer, I'm passionate about staying updated on the latest
+					web technologies. I've sharpened my skills through platforms like Codecademy, earning
+					multiple certificates. In my free time, I keep an eye on tech trends, focusing on cloud
+					computing and Bitcoin. I believe in continuous learning, actively seeking out online
+					resources and communities to expand my knowledge. I've proven my skills by tackling
+					real-world challenges and embracing new opportunities. Even though I don't have a
+					traditional computer science background, my dedication and competence as a developer show
+					in my projects. My aim is to keep growing and stay ahead in my field.
+				</p>
+				<CTA />
+			</div>
+		</section>
+		<section id="projects" class="flex flex-col">
+			<h3 class="text-4xl font-medium">_projects</h3>
+			<div>
+				<div id="projects-list" class="flex flex-col justify-between w-full mt-12">
+					{projects.map((project) => <ProjectCard {...project} />)}
+				</div>
+				<CTA center />
+			</div>
+		</section>
+		<section id="blog" class="flex flex-col items-center justify-center">
+			<h3 class="text-4xl font-medium">_blog</h3>
 
-          <Sprite name="logos:hardhat-icon" />
-          <Sprite name="cib:bitcoin" class="text-[#f2a900]" />
-        </div>
-      </div>
-      <div class="flex-1">
-        <h3 class="text-4xl font-medium">_about-me</h3>
-        <p class="comment mt-2">// get a small overview of who i am</p>
-        <p class="mt-9">
-          As a self-taught Full-Stack Developer, my passion for cutting-edge web technologies drives me to continually expand my skill set. I've honed my abilities through platforms like Codecademy, earning multiple certificates along the way. In my spare time, I stay abreast of the tech industry, with a particular focus on cloud computing and Bitcoin. My commitment to learning extends beyond formal education; I actively seek out online resources and communities to augment my knowledge. I have a proven track record of applying my skills to real-world challenges and thrive on new opportunities. While I lack a traditional computer science background, my dedication and competence as a developer shine through in my projects and collaborations. My aim is to constantly evolve and remain at the forefront of my field.
-        </p> 
-        <CTA />
-      </div>
-    </section>
-    <section id="projects" class="flex flex-col">
-      <h3 class="text-4xl font-medium">_projects</h3>
-      <div>
-        <div id="projects-list" class="flex flex-col justify-between w-full mt-12">
-          <ProjectCard
-          img="/projects/dca.png"
-          link="https://github.com/devtimnbr/crypto-dca-bot"
-          title="Crypto DCA Bot"
-          comment="TypeScript, Docker"
-          description="Within the framework of my investment strategy, I spearheaded the development of the Crypto DCA Bot project. This project showcases an automated cryptocurrency investment script, meticulously engineered with the CCXT library. It excels in executing cryptocurrency purchases, tailoring each transaction according to user-configured settings while strictly abiding by the dollar-cost averaging strategy."
-        />
-        
-          <ProjectCard
-          img="/projects/bitcoin-is-complex.com.png"
-          link="https://bitcoin-is-complex.com"
-          title="Bitcoin Is Complex"
-          comment="HTML, CSS, JavaScript"
-          description="In 'Bitcoin is Complex', I invite you to join me on a captivating journey into the intricate world of Bitcoin. This project, born out of my exploration during the Harvard CS50 course, delves into the enigmatic nature of this revolutionary digital currency. From the lens of mathematics, physics, informatics, biology, economics, and the rich tapestry of monetary history, we unravel the diverse dimensions that converge to shape the complexity of Bitcoin. "
-        />
-          <ProjectCard
-            img="/projects/race-fuel-calculator.pages.dev.png"
-            link="https://race-fuel-calculator.pages.dev"
-            title="Sim Racing Fuel Calculator"
-            comment="Svelte, Tailwind, TypeScript, PWA"
-            description="The 'Sim Racing Fuel Calculator' was as an afternoon project, serving dual purposes: to keep my coding skills sharp and to enhance my enjoyment of a new hobby. This handy tool allows you to calculate the precise amount of fuel required based on various factors such as lap time, race duration, and fuel consumption. Whether you're a seasoned sim racer or a newcomer, this calculator simplifies the fuel planning process, ensuring you're always prepared for your virtual races."
-          />
-          <ProjectCard
-            
-            img="/projects/sharp.png"
-            link="https://github.com/devtimnbr/siom"
-            title="Siom"
-            comment="Nodejs, TypeScript, Sharp, Docker"
-            description="Siom, short for Sharp Image Optimizer Microservice, is a versatile tool designed to resize images on the fly and effortlessly convert them to the WebP format. Throughout my journey, I conceptualized and built Siom as a robust image optimization solution, catering to the growing need for responsive and efficient web content. Siom streamlines the image optimization process, elevating web performance and enhancing the user experience."
-          />
-          <ProjectCard
-          img="/projects/cloudflare.jpg"
-          link="https://github.com/devtimnbr/cloudflare-formdata-mailer"
-          title="Cloudflare FormData Mailer"
-          comment="Cloudflare Workers, TypeScript"
-          description="'Cloudflare FormData Mailer' is a Cloudflare worker project designed to seamlessly send emails through the Mailchannel API. It efficiently constructs email content from the request FormData object, simplifying the email-sending process. Choxy offers a streamlined solution for email communication within web applications."
-        />
-        </div>
-        <CTA center />
-      </div>
-    </section>
-    <section id="blog" class="flex flex-col items-center justify-center">
-      <h3 class="text-4xl font-medium">_blog</h3>
+			<BlogPostList limit={3} />
 
-      <BlogPostList limit={3} />
+			<a href="/blog/" class="btn-primary mt-12 block">See more blog posts</a>
+		</section>
 
-      <a href="/blog/" class="btn-primary mt-12 block">See more blog posts</a>
-    </section>
-    
-      <ContactForm />
-    
-  </>
+		<ContactForm />
+	</>
 </BaseLayout>

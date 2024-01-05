@@ -4,6 +4,7 @@ title: "Adding a Copy Code Button in Astro Markdown Code Blocks"
 description: 'In this blog post, we will be discussing how to add a "Copy Code" button to HTML code blocks using the Astro.build framework. However, the JavaScript code provided can also be used in any other HTML project.'
 author: "Tim Neubauer"
 date: "14 Jan 2023"
+block: 771911
 img: "/blog/copy-code.webp"
 draft: false
 ---

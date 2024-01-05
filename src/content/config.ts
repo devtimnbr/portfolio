@@ -10,6 +10,7 @@ const blogCollection = defineCollection({
 		author: z.string(),
 		date: z.string(),
 		img: z.string(),
+		block: z.number(),
 		draft: z.boolean(),
 	}),
 })

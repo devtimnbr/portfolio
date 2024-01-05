@@ -6,6 +6,7 @@ description: 'In the ever-evolving landscape of technology and finance, the conc
 '
 author: 'Tim Neubauer'
 date: '05 Jul 2023'
+block: 797322 
 img: '/blog/bitcoin_reality.webp'
 draft: false
 ---

@@ -9,7 +9,7 @@
 }
 
 html {
-  font-family: 'Fira Code';
+  font-family: 'Fira Code Variable';
   color: #e5e9f0;
   scroll-padding-top: 8rem;
   scroll-behavior: smooth;
@@ -18,6 +18,7 @@ html {
 section {
   margin: 8rem 0;
 }
+
 @media screen and (min-width: 668px) {
   section {
     margin: 12rem 0;
@@ -94,6 +95,12 @@ a:hover {
 #projects-list > div:last-child {
   border-bottom: 0;
   padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  #project:nth-child(2n) {
+    flex-direction: row-reverse;
+  }
 }
 
 .blog p {

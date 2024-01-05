@@ -1,108 +1,99 @@
 ---
+
 ---
 
 <head>
-  <script>
-    let form = document.getElementById("contact-form") as HTMLFormElement;
-    let submitButton = document.getElementById(
-      "submit-form"
-    ) as HTMLButtonElement;
-    let sender = document.getElementById("sender");
-    let loader = document.getElementById("loader");
+	<script>
+		let form = document.getElementById('contact-form') as HTMLFormElement
+		let submitButton = document.getElementById('submit-form') as HTMLButtonElement
+		let sender = document.getElementById('sender')
+		let loader = document.getElementById('loader')
 
-    form.addEventListener("submit", async (e) => {
-      submitButton.disabled = true;
-      sender.classList.add("hidden");
-      loader.classList.remove("hidden");
+		form.addEventListener('submit', async (e) => {
+			submitButton.disabled = true
+			sender?.classList.add('hidden')
+			loader?.classList.remove('hidden')
 
-      const formData = new FormData(e.target as HTMLFormElement);
+			const formData = new FormData(e.target as HTMLFormElement)
 
-      try {
-        await fetch(import.meta.env.PUBLIC_MAILER_API, {
-          method: "POST",
-          body: formData,
-        });
-        form.reset();
-        alert("Email send successfully!");
-      } catch (err) {
-        alert("something went wrong ...");
-      } finally {
-        sender.classList.remove("hidden");
-        loader.classList.add("hidden");
-        submitButton.disabled = false;
-      }
-    });
-  </script>
+			try {
+				await fetch(import.meta.env.PUBLIC_MAILER_API, {
+					method: 'POST',
+					body: formData,
+				})
+				form.reset()
+				alert('Email sent successfully!')
+			} catch (err) {
+				alert('something went wrong ...')
+			} finally {
+				sender?.classList.remove('hidden')
+				loader?.classList.add('hidden')
+				submitButton.disabled = false
+			}
+		})
+	</script>
 </head>
 
 <section
-  id="contact"
-  class="border border-[#1E2D3D] bg-[#222233] px-8 py-16 mt-8 flex items-center md:space-x-12 flex-col md:flex-row"
-  style="background-image: url('/image.svg'); background-size: cover;"
->
-  <div class="md:flex-1 text-left">
-    <h2>Drop me a line.<br />I would like to hear from you.</h2>
-  </div>
-  <form
-    id="contact-form"
-    class="mt-12 md:flex-1 flex flex-col items-start w-full"
-    onsubmit="
+	id="contact"
+	class="border border-[#1E2D3D] bg-[#222233] px-8 py-16 mt-8 flex items-center md:space-x-12 flex-col md:flex-row max-w-6xl mx-auto"
+	style="background-image: url('/image.svg'); background-size: cover;">
+	<div class="md:flex-1 text-left">
+		<h2>Drop me a line.<br />I would like to hear from you.</h2>
+	</div>
+	<form
+		id="contact-form"
+		class="mt-12 md:flex-1 flex flex-col items-start w-full"
+		onsubmit="
     return false;
-    "
-  >
-    <h3 class="font-medium">_getInTouch()</h3>
-    <label for="name" class="mt-6">Name</label>
-    <input
-      id="name"
-      name="name"
-      type="text"
-      placeholder="Name"
-      class="w-full py-2 px-4 border-[#A478E8] border bg-[#232339] rounded-sm mt-2"
-      required
-    />
-    <label for="email" class="mt-4">Email</label>
-    <input
-      id="email"
-      name="email"
-      type="email"
-      placeholder="Email"
-      class="w-full py-2 px-4 bg-[#232339] border-[#A478E8] border rounded-sm mt-2"
-      required
-    />
-    <label for="message" class="mt-4">Message</label>
-    <textarea
-      id="message"
-      name="message"
-      placeholder="Message"
-      class="w-full py-2 px-4 mt-2 bg-[#232339] border-[#A478E8] border rounded-sm"
-      rows="5"
-      required></textarea>
-    <button id="submit-form" type="submit" class="btn-primary mt-8">
-      <div id="loader" class="flex items-center hidden">
-        <svg
-          class="mr-3 h-5 w-5 animate-spin text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          path="currentColor"
-        >
-          <circle
-            class="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            stroke-width="4"></circle>
-          <path
-            class="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
+    ">
+		<h3 class="font-medium">_get-in-touch()</h3>
+		<label for="name" class="mt-6">Name</label>
+		<input
+			id="name"
+			name="name"
+			type="text"
+			placeholder="Name"
+			class="w-full py-2 px-4 border-[#A478E8] border bg-[#232339] rounded-sm mt-2"
+			required
+		/>
+		<label for="email" class="mt-4">Email</label>
+		<input
+			id="email"
+			name="email"
+			type="email"
+			placeholder="Email"
+			class="w-full py-2 px-4 bg-[#232339] border-[#A478E8] border rounded-sm mt-2"
+			required
+		/>
+		<label for="message" class="mt-4">Message</label>
+		<textarea
+			id="message"
+			name="message"
+			placeholder="Message"
+			class="w-full py-2 px-4 mt-2 bg-[#232339] border-[#A478E8] border rounded-sm"
+			rows="5"
+			required></textarea>
+		<button id="submit-form" type="submit" class="btn-primary mt-8">
+			<div id="loader" class="flex items-center hidden">
+				<svg
+					class="mr-3 h-5 w-5 animate-spin text-white"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					path="currentColor">
+					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
+					></circle>
+					<path
+						class="opacity-75"
+						fill="currentColor"
+						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+					></path>
+				</svg>
 
-        Loading ...
-      </div>
-      <p id="sender">Send Message</p>
-    </button>
-  </form>
+				Loading ...
+			</div>
+			<p id="sender">Send Message</p>
+		</button>
+	</form>
 </section>

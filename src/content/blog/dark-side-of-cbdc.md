@@ -3,7 +3,8 @@ layout: ../../layouts/BlogPostLayout.astro
 title: "The Dark Side of Central Bank Digital Currencies (CBDCs): Threats to Society's Freedom and Stability"
 description: "In an era marked by rapid technological advancements, the concept of Central Bank Digital Currencies (CBDCs) has emerged as a topic of significant discussion and debate. CBDCs are digital representations of a country's fiat currency, issued and controlled by the central bank. While proponents argue that CBDCs offer enhanced efficiency, financial inclusion, and stability, it is crucial to critically examine their potential drawbacks and the implications they may have for society."
 author: 'Tim Neubauer'
-date: '05 Jul 2023'
+date: '28 Jun 2023'
+block: 796281
 img: '/blog/dark-side-of-cbdc.webp'
 draft: false
 ---

@@ -1,33 +1,36 @@
 ---
-import { Sprite } from 'astro-icon'
+import { Icon } from "astro-icon/components";
 
 interface Props {
-  title: string
-  img: string
-  comment: string
-  description: string
-  link: string
-  date: string
+  title: string;
+  img: string;
+  comment: string;
+  description: string;
+  link: string;
+  date: string;
+  block?: number;
 }
 
-const { title, img, description, link, date } = Astro.props
+const { title, img, description, link, date, block } = Astro.props;
 ---
 
-<div class="lg:w-[30%] bg-[#232339 ">
-<a href={link} class="block">
-  <img class="w-full h-56 rounded-t-lg object-cover" src={img} />
-  <div class="mt-6">
-    <p class="text-xl font-bold">{title}</p>
-    <p class="comment mt-1">// Written at: {date}</p>
-    <p class="mt-2">{description}</p>
-    <div class="mt-2 text-sm text-[#95AAFB]">
-      <a href={link} class="flex items-center cursor-pointer"
-        ><span class="inline-flex w-6 h-6 justify-center items-center bg-[#2A337E] rounded-full">
-          <Sprite name="akar-icons:book" class="w-4 h-4" />
-        </span>
-        <span class="ml-3">Read more</span>
-      </a>
+<div class="lg:w-[30%] bg-[#232339">
+  <a href={link} class="block">
+    <img class="w-full h-56 rounded-t-lg object-cover" src={img} />
+    <div class="mt-6">
+      <p class="text-xl font-bold">{title}</p>
+      <p class="comment mt-1">// Published: {date} | {block}</p>
+      <p class="mt-2">{description}</p>
+      <div class="mt-2 text-sm text-[#95AAFB]">
+        <a href={link} class="flex items-center cursor-pointer"
+          ><span
+            class="inline-flex w-6 h-6 justify-center items-center bg-[#2A337E] rounded-full"
+          >
+            <Icon name="akar-icons:book" class="w-4 h-4" />
+          </span>
+          <span class="ml-3">Read more</span>
+        </a>
+      </div>
     </div>
-  </div>
-</a>
+  </a>
 </div>

@@ -1,195 +1,163 @@
 ---
-import { Sprite } from "astro-icon";
+import { Icon } from 'astro-icon/components'
 ---
 
 <script>
-  // Hamburger Menu Script
-  function setupHamburger() {
-    const hamburger = document.querySelector("#hamburger") as HTMLElement;
-    const links = document.querySelectorAll("#navlinks a")
-    const nav = document.querySelector("#navlinks") as HTMLElement;
-    const bars = hamburger.getElementsByTagName("span");
-      const barStyles = { active: "bg-gray-300", default: "bg-[#7790a8]" };
-      const hamburgerContainerStyles = {
-        active: "border-gray-300",
-        default: "border-[#7790a8]",
-      };
+	// Hamburger Menu Script
+	function setupHamburger() {
+		const hamburger = document.querySelector('#hamburger') as HTMLElement
+		const links = document.querySelectorAll('#navlinks a')
+		const nav = document.querySelector('#navlinks') as HTMLElement
+		const bars = hamburger.getElementsByTagName('span')
+		const barStyles = { active: 'bg-gray-300', default: 'bg-[#7790a8]' }
+		const hamburgerContainerStyles = {
+			active: 'border-gray-300',
+			default: 'border-[#7790a8]',
+		}
 
-    function closeHamburger() {
-      nav.classList.add("hidden");
-        hamburger.classList.remove(hamburgerContainerStyles.active);
-        hamburger.classList.add(hamburgerContainerStyles.default);
-        for (const bar of bars) {
-          bar.classList.add(barStyles.default);
-          bar.classList.remove(barStyles.active);
-        }
-    }
+		function closeHamburger() {
+			nav.classList.add('hidden')
+			hamburger.classList.remove(hamburgerContainerStyles.active)
+			hamburger.classList.add(hamburgerContainerStyles.default)
+			for (const bar of bars) {
+				bar.classList.add(barStyles.default)
+				bar.classList.remove(barStyles.active)
+			}
+		}
 
-    function openHamburger() {
-      nav.classList.remove("hidden");
-        hamburger.classList.add(hamburgerContainerStyles.active);
-        hamburger.classList.remove(hamburgerContainerStyles.default);
-        for (const bar of bars) {
-          bar.classList.add(barStyles.active);
-          bar.classList.remove(barStyles.default);
-        }
-    }
+		function openHamburger() {
+			nav.classList.remove('hidden')
+			hamburger.classList.add(hamburgerContainerStyles.active)
+			hamburger.classList.remove(hamburgerContainerStyles.default)
+			for (const bar of bars) {
+				bar.classList.add(barStyles.active)
+				bar.classList.remove(barStyles.default)
+			}
+		}
 
-    hamburger.addEventListener("click", () => {
-      if (nav.classList.contains("hidden")) {
-        openHamburger()
-      } else {
-        closeHamburger()
-      }
-    });
+		hamburger.addEventListener('click', () => {
+			if (nav.classList.contains('hidden')) {
+				openHamburger()
+			} else {
+				closeHamburger()
+			}
+		})
 
-    // close hamburger menu after click
-    links.forEach(link => link.addEventListener("click", () => {
-      closeHamburger()
-    }))
-  }
+		// close hamburger menu after click
+		links.forEach((link) =>
+			link.addEventListener('click', () => {
+				closeHamburger()
+			})
+		)
+	}
 
-  // Intersection Observer Script
-  function setupObserver() {
-        
-    // simple function to use for callback in the intersection observer
-    const changeNav: IntersectionObserverCallback = (entries, observer) => {
+	function setupObserver() {
+		const sections = document.querySelectorAll('header, section')
 
-entries.forEach((entry) => {
-  
-  // verify the element is intersecting
-  if(entry.isIntersecting && entry.intersectionRatio >= 0.55) {
-    // remove old active class
-    let lastActives = document.querySelectorAll('.active')
-    if( lastActives)  lastActives.forEach(lastActive => lastActive.classList.remove('active'));
-    // get id of the intersecting section
-    var id = entry.target.getAttribute('id');
-    // find matching link & add appropriate class
-    var newLinks = document.querySelectorAll(`[href="#${id}"]`);
-    newLinks.forEach((el) => el.classList.add('active'))
-  }
-});
-}
+		// intersection observer
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						let lastAct = document.querySelectorAll(`ul li a.active`)
+						lastAct.forEach((el) => el.classList.remove('active'))
 
-// init the observer
-const options = {
-threshold: 0.55
-}
+						document.querySelector(`ul li.active`)?.classList.remove('active')
+						const id = entry.target.getAttribute('id')
+						// find matching link & add appropriate class
+						const newLinks = document.querySelectorAll(`[href="#${id}"]`)
+						newLinks.forEach((el) => el.classList.add('active'))
+					}
+				})
+			},
+			{
+				root: document /* <-- This is necessary for an iframe to properly target itself as the root document instead of the parent window. https://github.com/w3c/IntersectionObserver/issues/372 */,
+				rootMargin: '-15% 0px -85% 0px',
+			}
+		)
 
-const observer = new IntersectionObserver(changeNav, options);
+		sections.forEach((section, index) => {
+			observer.observe(section)
 
-// target the elements to be observed
+			// Check if the first section is in the viewport on page load
+			if (index === 0 && section.getBoundingClientRect().top >= 0) {
+				const firstSectionLinks = document.querySelectorAll(`[href="#${section.id}"]`)
+				firstSectionLinks.forEach((el) => el.classList.add('active'))
+			}
+		})
+	}
 
-let header = document.querySelector("header")
-let sections: any = document.querySelectorAll('section');
-sections = [header, ...sections]
+	document.addEventListener('astro:page-load', (ev) => {
+		setupHamburger()
 
-sections.forEach((section: HTMLElement) => {
-observer.observe(section);
-});  
-  }
+		const location = (ev.target as Document).location.toString()
+		const pathname = new URL(location).pathname
 
+		if (pathname === '/') {
+			//setupObserver();
+			setupObserver()
+		} else if (pathname.startsWith('/blog')) {
+			// Add leading slash to all hrefs in navigationLinks
+			const navigationLinks = document.querySelectorAll('#navlinks a')
 
-  document.addEventListener('astro:page-load', (ev) => {
-    setupHamburger()
+			navigationLinks.forEach((link) => {
+				if (link.getAttribute('href')?.startsWith('#blog')) {
+					link.setAttribute('href', '/blog')
+				} else if (!link.getAttribute('href')?.startsWith('/')) {
+					link.setAttribute('href', '/' + link.getAttribute('href'))
+				}
+			})
 
-    const location = (ev.target as Document).location.toString()
-    const pathname = new URL(location).pathname
-
-    if (pathname === "/") {
-      setupObserver()
-    } else if (pathname.startsWith("/blog")) {
-    // Add leading slash to all hrefs in navigationLinks
-    const navigationLinks = document.querySelectorAll('#navlinks a');
-
-    navigationLinks.forEach((link) => {
-      if(link.getAttribute("href")?.startsWith("#blog")) {
-            link.setAttribute('href', "/blog")
-      } else if (!link.getAttribute('href')?.startsWith('/')) {
-
-
-          link.setAttribute('href', '/' + link.getAttribute('href'));
-
-          
-        }
-      });
-
-      // Add "active" class to the blog link
-      document.querySelector(`[href="/blog"]`)?.classList.add("active");
-    }
-    
-  });
+			// Add "active" class to the blog link
+			document.querySelector(`[href="/blog"]`)?.classList.add('active')
+		}
+	})
 </script>
 
+<nav class="fixed z-50 w-full border-b border-[#1E2D3D] text-[#7790a8] bg-[#232339]">
+	<ul class="container flex flex-col lg:flex-row justify-between mx-auto relative">
+		<li class="border-x border-[#1E2D3D] px-8 py-4">
+			<a href="/">tim neubauer</a>
+		</li>
 
-<nav
-  class="fixed z-50 w-full border-b border-[#1E2D3D] text-[#7790a8] bg-[#232339]"
->
-  <ul
-    class="container flex flex-col lg:flex-row justify-between mx-auto relative"
-  >
-    <li class="border-x border-[#1E2D3D] px-8 py-4">
-      <a href="/">tim neubauer</a>
-    </li>
-
-    <li
-      id="navlinks"
-      class="hidden border-x border-[#1E2D3D] lg:block lg:border-x-0"
-    >
-      <ul
-        class="flex flex-col lg:flex-row px-8 pb-4 lg:py-4 space-y-1 lg:space-y-0 lg:space-x-8"
-      >
-        <li class="">
-          <a href="#hello" class="flex items-center"
-            ><Sprite
-              name="bi:chevron-compact-right"
-              class="h-4 w-4 lg:hidden"
-            /> _hello</a
-          >
-        </li>
-        <li class="">
-          <a href="#about" class="flex items-center"
-            ><Sprite
-              name="bi:chevron-compact-right"
-              class="h-4 w-4 lg:hidden"
-            /> _about-me</a
-          >
-        </li>
-        <li class="">
-          <a href="#projects" class="flex items-center"
-            ><Sprite
-              name="bi:chevron-compact-right"
-              class="h-4 w-4 lg:hidden"
-            /> _projects</a
-          >
-        </li>
-        <li class="">
-          <a href="#blog" class="flex items-center"
-            ><Sprite
-              name="bi:chevron-compact-right"
-              class="h-4 w-4 lg:hidden"
-            /> _blog</a
-          >
-        </li>
-        <li class="lg:hidden">
-          <a href="#contact" class="flex items-center"
-            ><Sprite name="bi:chevron-compact-right" class="h-4 w-4" /> _contact-me</a
-          >
-        </li>
-      </ul>
-    </li>
-    <li
-      id="hamburger"
-      class="p-2 w-fit cursor-pointer absolute right-6 top-2 lg:hidden rounded-sm"
-    >
-      <div class="space-y-[0.3rem]">
-        <span class="block w-5 h-0.5 bg-[#7790a8]"></span>
-        <span class="block w-5 h-0.5 bg-[#7790a8]"></span>
-        <span class="block w-3 h-0.5 bg-[#7790a8] ml-auto"></span>
-      </div>
-    </li>
-    <li class="px-8 py-4 hidden lg:block border-r border-[#1E2D3D]">
-      <a href="#contact">_contact-me</a>
-    </li>
-  </ul>
+		<li id="navlinks" class="hidden border-x border-[#1E2D3D] lg:block lg:border-x-0">
+			<ul class="flex flex-col lg:flex-row px-8 pb-4 lg:py-4 space-y-1 lg:space-y-0 lg:space-x-8">
+				<li class="">
+					<a href="#hello" class="flex items-center"
+						><Icon name="bi:chevron-compact-right" class="h-4 w-4 lg:hidden" /> _hello</a
+					>
+				</li>
+				<li class="">
+					<a href="#about" class="flex items-center"
+						><Icon name="bi:chevron-compact-right" class="h-4 w-4 lg:hidden" /> _about-me</a
+					>
+				</li>
+				<li class="">
+					<a href="#projects" class="flex items-center"
+						><Icon name="bi:chevron-compact-right" class="h-4 w-4 lg:hidden" /> _projects</a
+					>
+				</li>
+				<li class="">
+					<a href="#blog" class="flex items-center"
+						><Icon name="bi:chevron-compact-right" class="h-4 w-4 lg:hidden" /> _blog</a
+					>
+				</li>
+				<li class="lg:hidden">
+					<a href="#contact" class="flex items-center"
+						><Icon name="bi:chevron-compact-right" class="h-4 w-4" /> _contact-me</a
+					>
+				</li>
+			</ul>
+		</li>
+		<li id="hamburger" class="p-2 w-fit cursor-pointer absolute right-6 top-2 lg:hidden rounded-sm">
+			<div class="space-y-[0.3rem]">
+				<span class="block w-5 h-0.5 bg-[#7790a8]"></span>
+				<span class="block w-5 h-0.5 bg-[#7790a8]"></span>
+				<span class="block w-3 h-0.5 bg-[#7790a8] ml-auto"></span>
+			</div>
+		</li>
+		<li class="px-8 py-4 hidden lg:block border-r border-[#1E2D3D]">
+			<a href="#contact">_contact-me</a>
+		</li>
+	</ul>
 </nav>

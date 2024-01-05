@@ -4,6 +4,7 @@ title: "Working with forms with vanilla JavaScript"
 description: "Today, we’re going to look at some modern JavaScript methods for working with forms and form data. Let’s dig in!"
 author: "Tim Neubauer"
 date: "06 Jan 2023"
+block: 770693
 img: "/blog/formdata_object.webp"
 draft: false
 ---
