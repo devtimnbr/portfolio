@@ -100,7 +100,7 @@ const { frontmatter } = Astro.props
 		<img src={frontmatter.img} class="rounded-md h-1/6 mt-12 w-full object-cover mb-12" />
 		<p class="text-xl font-bold mb-0">Table of Contents</p>
 		<TableOfContents headers={Astro.props.headings} />
-		<div class="text-justify">
+		<div>
 			<slot />
 		</div>
 	</div>
